@@ -1,0 +1,86 @@
+.menu-item {
+  /* <li> */
+  position: relative;
+  height: 200px;
+  width: 200px; }
+
+/* ==== Navbar ==== */
+#navbar__container {
+  /* <nav> */
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  height: 60px;
+  background-color: darkgrey;
+  border-bottom: 1px solid black; }
+
+.navlist {
+  /* <ul> */
+  position: absolute;
+  top: 0px;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0; }
+
+.navlist li {
+  /* <li> */
+  list-style: none;
+  flex-grow: 1;
+  text-align: center;
+  height: 60px; }
+
+.navlist--left li {
+  /* <li> */
+  border-left: 1px solid #808080; }
+
+.navlist--left li:first-child {
+  /* <li> */
+  border: 0px; }
+
+.navlist--right li {
+  /* <li> */
+  border-right: 1px solid #808080; }
+
+.navlist--right li:last-child {
+  /* <li> */
+  border-right: 0px; }
+
+.navlist li a {
+  /* <a> */
+  display: block;
+  text-decoration: none;
+  height: 100%;
+  line-height: 60px;
+  color: white; }
+
+.navlist--left {
+  /* <ul> */
+  left: 0px;
+  width: 50%;
+  padding-right: 30px; }
+
+.navlist--right {
+  /* <ul> */
+  right: 0px;
+  width: 50%;
+  padding-left: 30px; }
+
+.centerpiece__container {
+  /* <div> */
+  z-index: 999;
+  position: relative;
+  margin: 0px auto;
+  padding: 0px 0px;
+  height: 100%;
+  width: 60px;
+  background-color: #131313;
+  border-radius: 50%;
+  border-right: 1px solid #a0a0a0;
+  border-left: 1px solid #a0a0a0; }
+
+#logo {
+  /* <img> */
+  max-height: 60px;
+  width: 100%; }
