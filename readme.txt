@@ -43,7 +43,6 @@ Restaurant mark off the order notify customer when it is ready
 ----- Languages -----
   Javascript
   Ajax
-  Jquery
   Twillio API
   Bootstrap
   Heroku // stretch
@@ -58,6 +57,7 @@ Restaurant mark off the order notify customer when it is ready
   Bodyparser (body-parser)
   Websockets (socket.io)
   Sass (node-sass)
+  Jquery (jquery)
 
   -JS Modules - dev environment-
   Nodemon (nodemon)
@@ -94,8 +94,7 @@ Express
 RESTful routes
 Using AJAX or complete SPA approach is optional
 One of the following two CSS grid and UI frameworks
-Bootstrap 3
-Zurb Foundation 5
+Bootstrap 3 or Zurb Foundation 5
 jQuery
 SASS for styling
 PostgreSQL for DB
