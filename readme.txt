@@ -65,7 +65,7 @@ Restaurant mark off the order notify customer when it is ready
   Webpack (webpack)
 
   - each dev needs to do these additional steps-
-  nodemon and webpack installed -g
+  nodemon, knex and webpack installed -g
   suggest install gitgutter on sublimetext
 
 
