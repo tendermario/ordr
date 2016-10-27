@@ -83,3 +83,22 @@ allow clients to pay for their order online, using Stripe integration for implem
 allow the restaurant owner to view their orders
 allow the restaurant owner to manage their dishes (prices, photos, descriptions, etc.)
 support for multiple restaurants instead of just the one (making it a multi-tenant SaaS)
+
+----- Stack Requirements -----
+Project must use:
+
+ES6 for server-side (Node) code
+ES5 for front-end code
+Node
+Express
+RESTful routes
+Using AJAX or complete SPA approach is optional
+One of the following two CSS grid and UI frameworks
+Bootstrap 3
+Zurb Foundation 5
+jQuery
+SASS for styling
+PostgreSQL for DB
+Knex.js for querying and migrations
+git for version control
+heroku for hosting (hosting is optional)
