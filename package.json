@@ -2,10 +2,10 @@
   "name": "ordr",
   "version": "1.0.0",
   "description": "online customer food ordering and restaurant order manager",
-  "main": "./server/index.js",
+  "main": "./server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "node_modules/.bin/node-sass server/sass/index.scss public/styles/styles.css --watch",
+    "sass": "node_modules/.bin/node-sass styles/sass/app.scss public/stylesheets/app.css --watch",
     "webpack": "webpack --watch"
   },
   "repository": {

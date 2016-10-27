@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const PORT = process.env.PORT || 8080;
 
+const customersApi = require('./routes/customers');
+const restaurantsApi = require('./routes/restaurants');
 
 //// Server
 
@@ -27,9 +29,14 @@ app.set("view engine", "ejs");
 
 //// Routes
 
+app.use('/customers', customersApi());
+
+app.use('/restaurants', restaurantsApi());
+
 app.get("/", (req, res) => {
   res.render("index");
 });
+
 
 
 // Start Server
