@@ -64,6 +64,10 @@ Restaurant mark off the order notify customer when it is ready
   Babel (babel-core, babel-loader, babel-preset-es2015)
   Webpack (webpack)
 
+  - each dev needs to do these additional steps-
+  nodemon and webpack installed -g
+  suggest install gitgutter on sublimetext
+
 
 ----- Requirements -----
 Food Pick-up Ordering
