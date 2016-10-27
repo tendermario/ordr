@@ -1,3 +1,5 @@
-node_modules
+node_modules/
+public/styles
 .env
-npm-debug.log
+*.log
+*.sqlite3
