@@ -44,15 +44,30 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _jquery = __webpack_require__(1);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
+	var _cart_module = __webpack_require__(2);
+
+	var _cart_module2 = _interopRequireDefault(_cart_module);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	(0, _jquery2.default)(function () {}); // Define our scripts in here.
+	// Define our scripts in here.
+
+	(0, _jquery2.default)(function () {
+	  var _this = this;
+
+	  (0, _jquery2.default)('.dish-item').on('click', function (event) {
+	    event.stopPropagation();
+	    var dish = {};
+	    dish.name = (0, _jquery2.default)(_this).find('.dish-item__name').data();
+	    _cart_module2.default.toggleFromCart(dish);
+	  });
+	});
 
 /***/ },
 /* 1 */
@@ -10279,6 +10294,74 @@
 	return jQuery;
 	} );
 
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _jquery = __webpack_require__(1);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var cart_module = {};
+	var _itemsInCart = [];
+
+	cart_module.toggleFromCart = function (item) {
+	  var itemExists = _itemsInCart.find(function (obj) {
+	    return obj.name === item.name;
+	  });
+
+	  typeof itemExists === 'undefined' ? _addToCart(item) : _removeFromCart(item);
+	};
+
+	var _addToCart = function _addToCart(item) {
+	  _itemsInCart.push(item);
+	  _renderCart(_itemsInCart);
+	};
+
+	var _removeFromCart = function _removeFromCart(item) {
+	  var newCartArr = _itemsInCart.filter(function (obj) {
+	    return obj.name !== item.name;
+	  });
+	  _renderCart(newCartArr);
+	};
+
+	var _render_cart = function _render_cart() {
+	  var $cartList = (0, _jquery2.default)('.cart__list');
+
+	  var _buildCartItem = function _buildCartItem(obj) {
+	    var $li = (0, _jquery2.default)('<li>').addClass('cart__list--item');
+	    var $fieldset = (0, _jquery2.default)('<fieldset>').addClass('cart__list--item fieldset');
+	    var $label = (0, _jquery2.default)('label').addClass('cart__list--item--name').text(obj.name);
+	    var $input = (0, _jquery2.default)('input').addClass('cart__list--item--quantity');
+
+	    $li.append($fieldset);
+	    $li.append($label);
+	    $li.append($input);
+
+	    return $li;
+	  };
+
+	  return {
+	    render: function render(cartArr) {
+	      cartArr.forEach(function (obj) {
+	        $cartList.append(_buildCartItem(obj));
+	      });
+	    }
+	  };
+	};
+
+	var _renderCart = _render_cart();
+
+	exports.default = cart_module;
 
 /***/ }
 /******/ ]);

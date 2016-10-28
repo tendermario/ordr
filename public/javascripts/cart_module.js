@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 let cart_module = {};
 let _itemsInCart = [];
 
@@ -15,16 +17,16 @@ const _addToCart = function (item) {
 };
 
 const _removeFromCart = function (item) {
-  const newArray = _itemsInCart.filter((obj) => {
+  const newCartArr = _itemsInCart.filter((obj) => {
     return obj.name !== item.name;
   });
-  _renderCart(newArray);
+  _renderCart(newCartArr);
 };
 
-const _renderCart = function (item) {
-  const cartList = $('.cart__list');
+const _render_cart = function () {
+  const $cartList = $('.cart__list');
 
-  _buildCartItem = function (obj) => {
+  const _buildCartItem = (obj) => {
     const $li = $('<li>').addClass('cart__list--item');
     const $fieldset = $('<fieldset>').addClass('cart__list--item fieldset');
     const $label = $('label').addClass('cart__list--item--name').text(obj.name);
@@ -38,13 +40,15 @@ const _renderCart = function (item) {
   };
 
   return {
-    render: (item) => {
-      _itemsInCart.forEach((obj) => {
-        htmlElm.append(_buildCartItem(obj));
+    render: (cartArr) => {
+      cartArr.forEach((obj) => {
+        $cartList.append(_buildCartItem(obj));
       });
     }
   }
 };
+
+const _renderCart = _render_cart();
 
 export default cart_module;
 
