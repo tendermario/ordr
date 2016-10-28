@@ -73,6 +73,7 @@ Note: If youre not going to demo it, dont build it
   Websockets (socket.io)
   Sass (node-sass)
   Jquery (jquery)
+  dotenv (dotenv)
 
   -JS Modules - dev environment-
   Nodemon (nodemon)
