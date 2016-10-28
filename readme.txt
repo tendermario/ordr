@@ -1,6 +1,22 @@
-TODO LIST
+----- Requirements -----
 
-Note: If youre not going to demo it, dont build it
+Food Pick-up Ordering
+A food ordering experience for a single restaurant. Hungry clients of this fictitious restaurant can visit its website, select one or more dishes and place an order for pick-up. They will receive a notification when their order is ready.
+
+The restaurant and client both need to be notified since this app serves as a middle-man.
+
+You can use a modern telecomm API service such as Twilio to implement the communication from the website to the client and restaurant.
+
+When an order is placed the restaurant is phoned and the order is read out to them. The restaurant can then specify how long it will take to fulfill it. Once they provide this information, the website updates for the client and also notifies them via SMS.
+
+For inspiration check out how Ritual works, but keep in mind that's implemented as a native app and serves more than one restaurant.
+
+Extensions:
+
+allow clients to pay for their order online, using Stripe integration for implementing secure e-commerce. If implemented, the clients would choose wether to pay online or at the counter
+allow the restaurant owner to view their orders
+allow the restaurant owner to manage their dishes (prices, photos, descriptions, etc.)
+support for multiple restaurants instead of just the one (making it a multi-tenant SaaS)
 
 ----- Customer needs -----
 
@@ -21,7 +37,6 @@ Pay online with Stripe integration
 Passport user login/auth
 Modifiers on order like no tomatoes or allergy
 
-
 ----- Restaurant needs -----
 
 As a restaurant I want to be able to receive orders from my customers
@@ -38,7 +53,7 @@ Restaurant manage dishes (name, price, photo, add, remove)
 Multi-restaurant
 Restaurant mark off the order notify customer when it is ready
 
-
+Note: If youre not going to demo it, dont build it
 
 ----- Languages -----
   Javascript
@@ -58,6 +73,7 @@ Restaurant mark off the order notify customer when it is ready
   Websockets (socket.io)
   Sass (node-sass)
   Jquery (jquery)
+  dotenv (dotenv)
 
   -JS Modules - dev environment-
   Nodemon (nodemon)
@@ -68,25 +84,34 @@ Restaurant mark off the order notify customer when it is ready
   nodemon, knex and webpack installed -g
   suggest install gitgutter on sublimetext
 
+----- Structure -----
 
------ Requirements -----
-Food Pick-up Ordering
-A food ordering experience for a single restaurant. Hungry clients of this fictitious restaurant can visit its website, select one or more dishes and place an order for pick-up. They will receive a notification when their order is ready.
+--------------------------
+Backend       | db/migrations/
+              | db/seeds/
+--------------------------
+Frontend      | public/javascripts/app.js (JS scripts)
+              | public/javascripts/bundle.js (transpiled JS scripts)
+              | public/stylesheets/app.css (generated css)
+--------------------------
+Connections   | routes/customers/
+              | routes/restaurants/
+--------------------------
+Styling       | styles/app.scss (Sass)
+--------------------------
+Frontend EJS  | views/_partials/
+              | views/customers/
+              | views/restaurants/
+              | index.ejs
+--------------------------
+Server        | server.js
+--------------------------
 
-The restaurant and client both need to be notified since this app serves as a middle-man.
+----- Notes -----
 
-You can use a modern telecomm API service such as Twilio to implement the communication from the website to the client and restaurant.
-
-When an order is placed the restaurant is phoned and the order is read out to them. The restaurant can then specify how long it will take to fulfill it. Once they provide this information, the website updates for the client and also notifies them via SMS.
-
-For inspiration check out how Ritual works, but keep in mind that's implemented as a native app and serves more than one restaurant.
-
-Extensions:
-
-allow clients to pay for their order online, using Stripe integration for implementing secure e-commerce. If implemented, the clients would choose wether to pay online or at the counter
-allow the restaurant owner to view their orders
-allow the restaurant owner to manage their dishes (prices, photos, descriptions, etc.)
-support for multiple restaurants instead of just the one (making it a multi-tenant SaaS)
+http://getbem.com/naming/ - Block Element Modifier name spacing CSS
+https://www.draw.io/#G0B9rTRGR5NeLdUVk0TWJNXzBNRnc - ERD
+https://trello.com/b/6YehCVP9/whiteboard - Trello team to do list
 
 ----- Stack Requirements -----
 Project must use:
