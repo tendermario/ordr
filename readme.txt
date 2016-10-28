@@ -80,7 +80,7 @@ Note: If youre not going to demo it, dont build it
   Webpack (webpack)
 
   - each dev needs to do these additional steps-
-  nodemon and webpack installed -g
+  nodemon, knex and webpack installed -g
   suggest install gitgutter on sublimetext
 
 ----- Notes -----
