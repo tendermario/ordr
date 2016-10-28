@@ -23,12 +23,35 @@
 }
 
     .shopping-cart__list--item { /* <li> */
-      
+      height: 50px;
+      padding: 0px;
+      border: 0px;
+      border-bottom: 1px solid black;
+    }
+
+    .shopping-cart__list--item fieldset { /* <fieldset> */
+      height: 100%;
+      width: 100%;
+      padding: 0px;
+      margin: 0px;
+      border: 0px;
     }
 
     .shopping-cart__list--item--name { /* <label> */
+      float: left;
       margin: 0px auto;
+      padding: 15px;
     }
+
+    .shopping-cart__list--item--quantity { /* <input> */
+      float: right;
+      height: 25px;
+      margin: 12px 15px;
+      border: 1px solid black;
+    }
+      .shopping-cart__list--item--quantity:focus { /* <input> */
+        outline: none;
+      }
 
 .shopping-cart__footer { /* <footer> */
   position: absolute;
