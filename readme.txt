@@ -83,6 +83,29 @@ Note: If youre not going to demo it, dont build it
   nodemon, knex and webpack installed -g
   suggest install gitgutter on sublimetext
 
+----- Structure -----
+
+--------------------------
+Backend       | db/migrations/
+              | db/seeds/
+--------------------------
+Frontend      | public/javascripts/app.js (JS scripts)
+              | public/javascripts/bundle.js (transpiled JS scripts)
+              | public/stylesheets/app.css (generated css)
+--------------------------
+Connections   | routes/customers/
+              | routes/restaurants/
+--------------------------
+Styling       | styles/app.scss (Sass)
+--------------------------
+Frontend EJS  | views/_partials/
+              | views/customers/
+              | views/restaurants/
+              | index.ejs
+--------------------------
+Server        | server.js
+--------------------------
+
 ----- Notes -----
 
 http://getbem.com/naming/ - Block Element Modifier name spacing CSS
