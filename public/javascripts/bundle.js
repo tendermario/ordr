@@ -66,6 +66,76 @@
 
 	    (0, _cart_module2.default)((0, _jquery2.default)(this).find('div'));
 	  });
+
+	  // Database pulling orders for customer page
+	  var restaurantsOrders = getOrders(7);
+
+	  function getOrders(restaurant_id) {
+	    knex.select("orders.id", "customers.name AS customer_name", "orders.order_date").from("orders").join("customers", "customers.id", "orders.customer_id").where("restaurant_id", restaurant_id).then(function (orderResult) {
+	      return getOrdersArray(orderResult);
+	    });
+	  }
+
+	  function getOrdersArray(orderResult) {
+	    var arrayOrders = [];
+	    var _iteratorNormalCompletion = true;
+	    var _didIteratorError = false;
+	    var _iteratorError = undefined;
+
+	    try {
+	      var _loop = function _loop() {
+	        order = _step.value;
+
+	        var id = order.id;
+	        knex.select("dishes.name", "order_dishes.quantity").from("order_dishes").join("dishes", "dishes.id", "order_dishes.dish_id").where("order_dishes.order_id", order.id).then(function (dishes) {
+	          var _order = order,
+	              customer_name = _order.customer_name,
+	              order_date = _order.order_date;
+
+	          var totalDishes = formatDishes(dishes);
+	          var prettyData = {
+	            id: id,
+	            customer_name: customer_name,
+	            order_date: order_date,
+	            dishes: totalDishes
+	          };
+
+	          arrayOrders.push(prettyData);
+	          console.log('alpha');
+	          console.log(arrayOrders.length);
+	          console.log(orderResult.length);
+	        });
+	      };
+
+	      for (var _iterator = orderResult[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	        _loop();
+	      }
+	    } catch (err) {
+	      _didIteratorError = true;
+	      _iteratorError = err;
+	    } finally {
+	      try {
+	        if (!_iteratorNormalCompletion && _iterator.return) {
+	          _iterator.return();
+	        }
+	      } finally {
+	        if (_didIteratorError) {
+	          throw _iteratorError;
+	        }
+	      }
+	    }
+
+	    console.log('beta');
+	    console.log(arrayOrders);
+	  }
+
+	  function formatDishes(dishes) {
+	    var dishObj = {};
+	    dishes.forEach(function (d) {
+	      return dishObj[d.name] = d.quantity;
+	    });
+	    return dishObj;
+	  }
 	});
 
 /***/ },
@@ -10352,9 +10422,9 @@
 	var toggleFromCart = function toggleFromCart($obj) {
 	  var item = {
 	    name: $obj.find('.menu-item__name').text(),
-	    //converted_name: $obj.find('.menu-item__name').data('name'),
 	    price: $obj.find('.menu-item__price').data('price')
 	  };
+
 	  item.converted_name = convert(item.name);
 	  var itemInList = (0, _jquery2.default)('.cart__list').find('#' + item.converted_name);
 
@@ -10366,28 +10436,6 @@
 	};
 
 	exports.default = toggleFromCart;
-
-	// cart_module.toggleFromCart = function (item) {
-	//   const itemExists = itemsInCart.find((obj) => {
-	//     return obj.name === item.name;
-	//   });
-	//   !itemExists ? _addToCart(item) : _removeFromCart(item);
-	// };
-
-	// const _addToCart = function (item) {
-	//   itemsInCart.push(item);
-	//   _renderCart.render(itemsInCart);
-	// };
-
-	// const _removeFromCart = function (item) {
-	//   console.log("REMOVE FROM CART");
-	//   const newCartArr = itemsInCart.filter((obj) => {
-	//     return obj.name !== item.name;
-	//   });
-	//   _renderCart.render(newCartArr);
-	// };
-
-	//export default cart_module;
 
 /***/ }
 /******/ ]);
