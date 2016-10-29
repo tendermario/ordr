@@ -24,6 +24,7 @@ $(function() {
 
          $(this).closest('.order_chit').data('id')
 
+
         $.ajax({
             url: '/restaurants',
             type: 'post',
@@ -38,3 +39,4 @@ $(function() {
         });
     });
 });
+
