@@ -57,15 +57,41 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	(0, _jquery2.default)(function () {
-	  //.find('.menu-item__name')
-	  (0, _jquery2.default)('.menu-item').on('click', function (event) {
-	    // let dish = {}; 
-	    // dish.name = $(this).data('name');
+	    (0, _jquery2.default)('.menu-item').on('click', function (event) {
+	        (0, _cart_module2.default)((0, _jquery2.default)(this).find('div'));
+	    });
+	    console.log("hello");
+	    var ordersCompleted = [];
 
-	    (0, _cart_module2.default)((0, _jquery2.default)(this).find('div'));
-	  });
+	    (0, _jquery2.default)(".remove_chit").on('click', function (event) {
+	        alert('button clicked');
 
-	  alert('dtravis');
+	        // toggle the button text between "done" and "not done"
+	        (0, _jquery2.default)(this).text() === "Queued: click to finish" ? (0, _jquery2.default)(this).text("Finished: click to queue") : (0, _jquery2.default)(this).text("Queued: click to finish");
+
+	        //find what the order number of the chit is
+	        var order_id = (0, _jquery2.default)(this).closest("header").find("#order_id").html();
+
+	        // if the order is already in the array remove it
+	        var orderInArray = ordersCompleted.indexOf(order_id);
+	        if (orderInArray !== -1) {
+	            ordersCompleted.splice(orderInArray, 1);
+	        } else {
+	            ordersCompleted.push(order_id);
+	        }
+	        console.log('ordersCompleted', ordersCompleted);
+
+	        // $.ajax({
+	        //     url: '/restaurants',
+	        //     type: 'post',
+	        //     dataType: 'text'
+	        // }).done(function(data) {
+	        //     renderTweets(data);
+	        // }).fail(function(data) {
+	        //     console.log('failed');
+	        // })
+
+	    });
 	});
 
 /***/ },

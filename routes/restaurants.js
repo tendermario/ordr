@@ -11,6 +11,7 @@ module.exports = (db) => {
             id: 29,
             customer_name: "Hungry Afdane",
             order_date: "some date",
+            completed: false,
             dishes: {
                 bagel: 1,
                 linguini: 1,
@@ -22,6 +23,7 @@ module.exports = (db) => {
             id: 30,
             customer_name: "TRavis",
             order_date: "some date",
+            completed: false,
             dishes: {
                 bagel: 1,
                 linguini: 10,

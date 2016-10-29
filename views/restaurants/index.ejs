@@ -18,17 +18,19 @@
       <%let customer_name;%>
       <%let dishes;%>
       <%let order_date;%>
+      <%let completed;%>
 
       <% for(var order of dbData) {%>
       <%  order_id      = order.id;%>
       <%  customer_name = order.customer_name;%>
       <%  dishes        = order.dishes;%>
       <%  order_date    = order.order_date;%>
+      <%  completed     = order.completed%>
 
     <div class="order_chit">
        <header>
-        <button class="remove_chit" type="button">Remove</button>
-        <h2>Order <%=order_id%></h2>
+        <button class="remove_chit" type="button">Queued: click to finish</button>
+        <h2 id = "order_id"><%=order_id%></h2>
         <h4><%=order_date%></h4>
        </header>
        <div>
@@ -50,21 +52,7 @@
 
   </footer>
 
-      <script type="text/javascript">
-        import $ from "jquery";
 
-      $(function(){
-
-
-        alert('document ready!');
-
-        $(".remove_chit").on('click' ,function(event) {
-          alert('button clicked');
-          console.log("shittt");
-        });
-
-      });
-  </script>
   <script src="./javascripts/bundle.js"></script>
 
 </body>
