@@ -44,17 +44,28 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _jquery = __webpack_require__(1);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
+	var _cart_module = __webpack_require__(2);
+
+	var _cart_module2 = _interopRequireDefault(_cart_module);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	(0, _jquery2.default)(function () {
+	  //.find('.menu-item__name')
+	  (0, _jquery2.default)('.menu-item').on('click', function (event) {
+	    // let dish = {}; 
+	    // dish.name = $(this).data('name');
 
-	  alert('document ready!');
+	    (0, _cart_module2.default)((0, _jquery2.default)(this).find('div'));
+	  });
+
+	  alert('dtravis');
 	});
 
 /***/ },
@@ -10282,6 +10293,79 @@
 	return jQuery;
 	} );
 
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _jquery = __webpack_require__(1);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var cart_module = {};
+	var itemsInCart = (0, _jquery2.default)('.cart ul');
+
+	var _renderCartFactory = function _renderCartFactory() {
+	  var $cartList = (0, _jquery2.default)('.cart__list');
+
+	  var _buildCartItem = function _buildCartItem(obj) {
+	    var $li = (0, _jquery2.default)('<li id="' + obj.converted_name + '">').addClass('cart__list--item');
+	    var $label = (0, _jquery2.default)('<label>').addClass('cart__list--item--name').text(obj.name);
+	    var $input = (0, _jquery2.default)('<input type="number">').addClass('cart__list--item--quantity');
+
+	    $li.append($label);
+	    $li.append($input);
+
+	    return $li;
+	  };
+
+	  return {
+	    addToCart: function addToCart(item) {
+	      var $cartItem = _buildCartItem(item);
+	      $cartList.append($cartItem);
+	    },
+	    removeFromCart: function removeFromCart($item) {
+	      $item.remove();
+	    },
+	    render: function render(cartArr) {
+	      cartArr.forEach(function (obj) {
+	        $cartList.append(_buildCartItem(obj));
+	      });
+	    }
+	  };
+	};
+
+	var _renderCart = _renderCartFactory();
+
+	var convert = function convert(string) {
+	  return string.toLowerCase().replace(/\s/g, '_');
+	};
+
+	var toggleFromCart = function toggleFromCart($obj) {
+	  var item = {
+	    name: $obj.find('.menu-item__name').text(),
+	    price: $obj.find('.menu-item__price').data('price')
+	  };
+
+	  item.converted_name = convert(item.name);
+	  var itemInList = (0, _jquery2.default)('.cart__list').find('#' + item.converted_name);
+
+	  if (itemInList.length) {
+	    _renderCart.removeFromCart(itemInList);
+	  } else {
+	    _renderCart.addToCart(item);
+	  }
+	};
+
+	exports.default = toggleFromCart;
 
 /***/ }
 /******/ ]);
