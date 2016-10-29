@@ -60,8 +60,18 @@
 
 	(0, _jquery2.default)(function () {
 
-	  (0, _jquery2.default)('.menu-item').on('click', function (event) {
-	    (0, _cart_module2.default)((0, _jquery2.default)(this).find('div'));
+	  // Cart_Module
+	  (0, _jquery2.default)('.menu-item').on('click', function () {
+	    _cart_module2.default.toggleFromCart((0, _jquery2.default)(this).find('div'));
+	  });
+
+	  (0, _jquery2.default)('.cart__list').on('input', '.cart__list--item--quantity', function () {
+	    var $price_span = (0, _jquery2.default)(this).siblings('span');
+	    var basePrice = +$price_span.attr('data-price');
+	    var totalPrice = basePrice * Number((0, _jquery2.default)('.cart__list--item--quantity').val());
+
+	    $price_span.attr('data-totalPrice', totalPrice);
+	    $price_span.text('$' + totalPrice);
 	  });
 	});
 
@@ -10316,7 +10326,6 @@
 	var $cartList = (0, _jquery2.default)('.cart__list');
 
 	var _renderCartFactory = function _renderCartFactory() {
-
 	  var _buildCartItem = function _buildCartItem(obj) {
 	    var $li = (0, _jquery2.default)('<li id="' + obj.converted_name + '">').addClass('cart__list--item');
 	    var $label = (0, _jquery2.default)('<label>').addClass('cart__list--item--name').text(obj.name);
@@ -10348,7 +10357,7 @@
 
 	var _renderCart = _renderCartFactory();
 
-	var toggleFromCart = function toggleFromCart($obj) {
+	cart_module.toggleFromCart = function ($obj) {
 	  var item = {
 	    name: $obj.find('.menu-item__name').text(),
 	    price: $obj.find('.menu-item__price').data('price')
@@ -10364,7 +10373,7 @@
 	  }
 	};
 
-	exports.default = toggleFromCart;
+	exports.default = cart_module;
 
 /***/ },
 /* 3 */

@@ -6,7 +6,6 @@ let cart_module = {};
 let $cartList = $('.cart__list');
 
 const _renderCartFactory = function () {
-
   const _buildCartItem = (obj) => {
     const $li = $(`<li id="${obj.converted_name}">`).addClass('cart__list--item');
     const $label = $('<label>').addClass('cart__list--item--name').text(obj.name);
@@ -38,7 +37,7 @@ const _renderCartFactory = function () {
 
 const _renderCart = _renderCartFactory();
 
-const toggleFromCart = function ($obj) {
+cart_module.toggleFromCart = function ($obj) {
   const item = {
     name: $obj.find('.menu-item__name').text(),
     price: $obj.find('.menu-item__price').data('price'),
@@ -54,7 +53,10 @@ const toggleFromCart = function ($obj) {
   }
 };
 
-export default toggleFromCart;
+
+
+
+export default cart_module;
 
 
 
