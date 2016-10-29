@@ -1,38 +1,16 @@
 import $ from "jquery";
 
 let cart_module = {};
-let _itemsInCart = [];
+let itemsInCart = $('.cart ul');
 
-cart_module.toggleFromCart = function (item) {
-  const itemExists = _itemsInCart.find((obj) => {
-    return obj.name === item.name;
-  });
-
-  typeof itemExists === 'undefined' ? _addToCart(item) : _removeFromCart(item);
-};
-
-const _addToCart = function (item) {
-  _itemsInCart.push(item);
-  _renderCart(_itemsInCart);
-};
-
-const _removeFromCart = function (item) {
-  const newCartArr = _itemsInCart.filter((obj) => {
-    return obj.name !== item.name;
-  });
-  _renderCart(newCartArr);
-};
-
-const _render_cart = function () {
+const _renderCartFactory = function () {
   const $cartList = $('.cart__list');
 
   const _buildCartItem = (obj) => {
-    const $li = $('<li>').addClass('cart__list--item');
-    const $fieldset = $('<fieldset>').addClass('cart__list--item fieldset');
-    const $label = $('label').addClass('cart__list--item--name').text(obj.name);
-    const $input = $('input').addClass('cart__list--item--quantity');
+    const $li = $(`<li id="${obj.converted_name}">`).addClass('cart__list--item');
+    const $label = $('<label>').addClass('cart__list--item--name').text(obj.name);
+    const $input = $('<input type="number">').addClass('cart__list--item--quantity');
 
-    $li.append($fieldset);
     $li.append($label);
     $li.append($input);
 
@@ -40,6 +18,13 @@ const _render_cart = function () {
   };
 
   return {
+    addToCart: (item) => {
+      const $cartItem = _buildCartItem(item);
+      $cartList.append($cartItem);
+    },
+    removeFromCart: ($item) => {
+      $item.remove();
+    },
     render: (cartArr) => {
       cartArr.forEach((obj) => {
         $cartList.append(_buildCartItem(obj));
@@ -48,8 +33,30 @@ const _render_cart = function () {
   }
 };
 
-const _renderCart = _render_cart();
 
-export default cart_module;
+const _renderCart = _renderCartFactory();
+
+const convert = function (string) {
+  return string.toLowerCase().replace(/\s/g, '_');
+};
+
+const toggleFromCart = function ($obj) {
+  const item = {
+    name: $obj.find('.menu-item__name').text(),
+    price: $obj.find('.menu-item__price').data('price'),
+  };
+  
+  item.converted_name = convert(item.name);
+  const itemInList = $('.cart__list').find('#' + item.converted_name);
+
+  if (itemInList.length) {
+    _renderCart.removeFromCart(itemInList);
+  } else {
+    _renderCart.addToCart(item);
+  }
+};
+
+export default toggleFromCart;
+
 
 

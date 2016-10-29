@@ -59,13 +59,12 @@
 	// Define our scripts in here.
 
 	(0, _jquery2.default)(function () {
-	  var _this = this;
+	  //.find('.menu-item__name')
+	  (0, _jquery2.default)('.menu-item').on('click', function (event) {
+	    // let dish = {}; 
+	    // dish.name = $(this).data('name');
 
-	  (0, _jquery2.default)('.dish-item').on('click', function (event) {
-	    event.stopPropagation();
-	    var dish = {};
-	    dish.name = (0, _jquery2.default)(_this).find('.dish-item__name').data();
-	    _cart_module2.default.toggleFromCart(dish);
+	    (0, _cart_module2.default)((0, _jquery2.default)(this).find('div'));
 	  });
 	});
 
@@ -10312,38 +10311,16 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var cart_module = {};
-	var _itemsInCart = [];
+	var itemsInCart = (0, _jquery2.default)('.cart ul');
 
-	cart_module.toggleFromCart = function (item) {
-	  var itemExists = _itemsInCart.find(function (obj) {
-	    return obj.name === item.name;
-	  });
-
-	  typeof itemExists === 'undefined' ? _addToCart(item) : _removeFromCart(item);
-	};
-
-	var _addToCart = function _addToCart(item) {
-	  _itemsInCart.push(item);
-	  _renderCart(_itemsInCart);
-	};
-
-	var _removeFromCart = function _removeFromCart(item) {
-	  var newCartArr = _itemsInCart.filter(function (obj) {
-	    return obj.name !== item.name;
-	  });
-	  _renderCart(newCartArr);
-	};
-
-	var _render_cart = function _render_cart() {
+	var _renderCartFactory = function _renderCartFactory() {
 	  var $cartList = (0, _jquery2.default)('.cart__list');
 
 	  var _buildCartItem = function _buildCartItem(obj) {
-	    var $li = (0, _jquery2.default)('<li>').addClass('cart__list--item');
-	    var $fieldset = (0, _jquery2.default)('<fieldset>').addClass('cart__list--item fieldset');
-	    var $label = (0, _jquery2.default)('label').addClass('cart__list--item--name').text(obj.name);
-	    var $input = (0, _jquery2.default)('input').addClass('cart__list--item--quantity');
+	    var $li = (0, _jquery2.default)('<li id="' + obj.converted_name + '">').addClass('cart__list--item');
+	    var $label = (0, _jquery2.default)('<label>').addClass('cart__list--item--name').text(obj.name);
+	    var $input = (0, _jquery2.default)('<input type="number">').addClass('cart__list--item--quantity');
 
-	    $li.append($fieldset);
 	    $li.append($label);
 	    $li.append($input);
 
@@ -10351,6 +10328,13 @@
 	  };
 
 	  return {
+	    addToCart: function addToCart(item) {
+	      var $cartItem = _buildCartItem(item);
+	      $cartList.append($cartItem);
+	    },
+	    removeFromCart: function removeFromCart($item) {
+	      $item.remove();
+	    },
 	    render: function render(cartArr) {
 	      cartArr.forEach(function (obj) {
 	        $cartList.append(_buildCartItem(obj));
@@ -10359,9 +10343,51 @@
 	  };
 	};
 
-	var _renderCart = _render_cart();
+	var _renderCart = _renderCartFactory();
 
-	exports.default = cart_module;
+	var convert = function convert(string) {
+	  return string.toLowerCase().replace(/\s/g, '_');
+	};
+
+	var toggleFromCart = function toggleFromCart($obj) {
+	  var item = {
+	    name: $obj.find('.menu-item__name').text(),
+	    //converted_name: $obj.find('.menu-item__name').data('name'),
+	    price: $obj.find('.menu-item__price').data('price')
+	  };
+	  item.converted_name = convert(item.name);
+	  var itemInList = (0, _jquery2.default)('.cart__list').find('#' + item.converted_name);
+
+	  if (itemInList.length) {
+	    _renderCart.removeFromCart(itemInList);
+	  } else {
+	    _renderCart.addToCart(item);
+	  }
+	};
+
+	exports.default = toggleFromCart;
+
+	// cart_module.toggleFromCart = function (item) {
+	//   const itemExists = itemsInCart.find((obj) => {
+	//     return obj.name === item.name;
+	//   });
+	//   !itemExists ? _addToCart(item) : _removeFromCart(item);
+	// };
+
+	// const _addToCart = function (item) {
+	//   itemsInCart.push(item);
+	//   _renderCart.render(itemsInCart);
+	// };
+
+	// const _removeFromCart = function (item) {
+	//   console.log("REMOVE FROM CART");
+	//   const newCartArr = itemsInCart.filter((obj) => {
+	//     return obj.name !== item.name;
+	//   });
+	//   _renderCart.render(newCartArr);
+	// };
+
+	//export default cart_module;
 
 /***/ }
 /******/ ]);

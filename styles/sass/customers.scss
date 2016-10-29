@@ -1,4 +1,10 @@
 .customers__container {
-  height: 100%;
+  position: fixed;
+    top: $navbar__height;
+    left: 0px;
   width: 62%;
+}
+
+#lobster {
+  color: red;
 }

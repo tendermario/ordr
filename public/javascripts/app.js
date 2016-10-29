@@ -1,15 +1,16 @@
 // Define our scripts in here.
 
 import $ from "jquery";
-import cart_module from './cart_module.js';
+import toggleFromCart from './cart_module.js';
 
 $(function() {
+  //.find('.menu-item__name')
+  $('.menu-item').on('click', function (event) {
+    // let dish = {}; 
+    // dish.name = $(this).data('name');
+    
+    toggleFromCart($(this).find('div'));
 
-  $('.dish-item').on('click', (event) => {
-    event.stopPropagation();
-    let dish = {}; 
-    dish.name = $(this).find('.dish-item__name').data();
-    cart_module.toggleFromCart(dish);
   });
 
 

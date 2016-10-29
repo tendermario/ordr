@@ -1,5 +1,10 @@
 .menu-item { /* <li> */
+  cursor: pointer;
   position: relative;
   height: 200px;
   width: 200px;
+
+  float: left;
+
+  background-color: grey;
 }

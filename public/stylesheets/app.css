@@ -1,8 +1,11 @@
 .menu-item {
   /* <li> */
+  cursor: pointer;
   position: relative;
   height: 200px;
-  width: 200px; }
+  width: 200px;
+  float: left;
+  background-color: grey; }
 
 /* ==== Navbar ==== */
 #navbar__container {
@@ -86,8 +89,13 @@
   width: 100%; }
 
 .customers__container {
-  height: 100%;
+  position: fixed;
+  top: 60px;
+  left: 0px;
   width: 62%; }
+
+#lobster {
+  color: red; }
 
 .sidebar {
   /* <div> */
