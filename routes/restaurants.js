@@ -11,15 +11,15 @@ module.exports = (db) => {
   // when
   router.get("/", (req, res) => {
     // hard-coding restaurant as 1:
-    arrayOfOrders = db.getOrders(1);
-    renderedData = { arrayOfOrders }
+    let arrayOfOrders = db.getOrders(1);
+    let renderedData = { arrayOfOrders }
     res.render("../views/restaurants/index", renderedData);
   });
 
   router.get("/:id", (req, res) => {
-    restaurant_id = req.params.id;
-    arrayOfOrders = db.getOrders(restaurant_id);
-    renderedData = { arrayOfOrders }
+    let restaurant_id = req.params.id;
+    let arrayOfOrders = db.getOrders(restaurant_id);
+    let renderedData = { arrayOfOrders }
     // passing order object to view
     res.render("../view/restaurants/index", renderedData);
   });
