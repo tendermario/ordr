@@ -36,5 +36,9 @@ module.exports = (db) => {
         };
         res.render("../views/restaurants/index", sampleOrderData);
     });
+
+    router.post("/",(req,res) => {
+
+    });
     return router;
 }
