@@ -1,0 +1,13 @@
+.container .chit_container {
+  border-color: black;
+  border-style: solid;
+  background-color: blue;
+  margin: auto auto;
+  height: 500px; }
+
+.container .order_chit {
+  border-color: black;
+  border-style: solid;
+  float: left;
+  margin: 10px 10px 10px 10px;
+  background-color: grey; }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Ordr</title>
+    <link rel="stylesheet" type="text/css" href="./stylesheets/restaurant.css">
+  </head>
+<body>
+
+  <main class="container">
+  <div class="chit_container">
+      <%let order_id;%>
+      <%let customer_name;%>
+      <%let dishes;%>
+      <%let order_date;%>
+
+      <% for(var order of dbData) {%>
+      <%  order_id      = order.id;%>
+      <%  customer_name = order.customer_name;%>
+      <%  dishes        = order.dishes;%>
+      <%  order_date    = order.order_date;%>
+
+
+    <div class="order_chit">
+       <header>
+        <h2>Order <%=order_id%></h2>
+        <h4><%=order_date%></h4>
+       </header>
+       <div>
+         <ul>
+           <%for(let key in dishes) {%>
+              <li>
+                <span id = "dish_name"><%=key%></span>
+                <span id = "dish_quantity"><%=dishes[key]%></span>
+              </li>
+           <%}%>
+         </ul>
+       </div>
+    </div>
+  <%}%>
+
+</div>
+  </main>
+  <footer>
+
+  </footer>
+  <script src="./javascripts/bundle.js"></script>
+</body>
+</html>
+
+
+

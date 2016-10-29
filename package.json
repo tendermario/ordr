@@ -5,7 +5,7 @@
   "main": "./server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "node_modules/.bin/node-sass styles/sass/app.scss public/stylesheets/app.css --watch",
+    "sass": "node_modules/.bin/node-sass --output public/stylesheets --recursive --watch styles/sass",
     "webpack": "webpack --watch"
   },
   "repository": {

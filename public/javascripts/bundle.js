@@ -52,7 +52,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	(0, _jquery2.default)(function () {}); // Define our scripts in here.
+	(0, _jquery2.default)(function () {});
 
 /***/ },
 /* 1 */
