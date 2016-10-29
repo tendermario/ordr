@@ -26,6 +26,7 @@ const _renderCartFactory = function () {
     },
     removeFromCart: ($item) => {
       $item.remove();
+      $('.cart__total-cost').val(cart_module.calculateTotalCost());
     },
     render: (cartArr) => {
       cartArr.forEach((obj) => {
@@ -53,7 +54,18 @@ cart_module.toggleFromCart = function ($obj) {
   }
 };
 
+cart_module.calculateTotalCost = function () {
+  let totalCost = 0;
 
+  $('.cart__list li').each(function() {
+    const $itemPrice = $(this).children('span').attr('data-totalPrice');
+
+    console.log($itemPrice);
+    
+    totalCost += Number($itemPrice);
+  });
+  return totalCost;
+};
 
 
 export default cart_module;

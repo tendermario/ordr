@@ -4,6 +4,7 @@ module.exports = {
     path : './public/javascripts/',
     filename : "bundle.js"
   },
+  devtool: 'eval',
   module : {
     loaders : [
       {
