@@ -10352,9 +10352,9 @@
 	var toggleFromCart = function toggleFromCart($obj) {
 	  var item = {
 	    name: $obj.find('.menu-item__name').text(),
-	    //converted_name: $obj.find('.menu-item__name').data('name'),
 	    price: $obj.find('.menu-item__price').data('price')
 	  };
+
 	  item.converted_name = convert(item.name);
 	  var itemInList = (0, _jquery2.default)('.cart__list').find('#' + item.converted_name);
 
@@ -10366,28 +10366,6 @@
 	};
 
 	exports.default = toggleFromCart;
-
-	// cart_module.toggleFromCart = function (item) {
-	//   const itemExists = itemsInCart.find((obj) => {
-	//     return obj.name === item.name;
-	//   });
-	//   !itemExists ? _addToCart(item) : _removeFromCart(item);
-	// };
-
-	// const _addToCart = function (item) {
-	//   itemsInCart.push(item);
-	//   _renderCart.render(itemsInCart);
-	// };
-
-	// const _removeFromCart = function (item) {
-	//   console.log("REMOVE FROM CART");
-	//   const newCartArr = itemsInCart.filter((obj) => {
-	//     return obj.name !== item.name;
-	//   });
-	//   _renderCart.render(newCartArr);
-	// };
-
-	//export default cart_module;
 
 /***/ }
 /******/ ]);
