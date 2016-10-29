@@ -24,6 +24,7 @@ const restaurantsApi = require('./routes/restaurants');
 
 
 let restaurantsOrders = getOrders(7);
+console.log(restaurantsOrders);
 
   function getOrders(restaurant_id) {
     knex.select("orders.id", "customers.name AS customer_name", "orders.order_date")
@@ -37,6 +38,7 @@ let restaurantsOrders = getOrders(7);
 
   function getOrdersArray(orderResult) {
     let arrayOrders = [];
+    return "test";
     for (order of orderResult) {
       // Promise.all returns a promise ofr an array
       let id = order.id;
@@ -53,7 +55,6 @@ let restaurantsOrders = getOrders(7);
             order_date,
             dishes: totalDishes
           };
-
           arrayOrders.push(prettyData);
           console.log('alpha');
           console.log(arrayOrders.length);

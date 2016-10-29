@@ -1,4 +1,4 @@
-exports.seed = function(knex, Promise) {
+// exports.seed = function(knex, Promise) {
 //   return knex('order_dishes').del()
 //     .then(function () {
 //       return Promise.all([
@@ -10,3 +10,12 @@ exports.seed = function(knex, Promise) {
 //       ]);
 //     });
 // };
+
+exports.seed = function(knex, Promise) {
+  knex('order_dishes').insert({quantity: 1, order_id: 1, dish_id: 1});
+  knex('order_dishes').insert({quantity: 1, order_id: 1, dish_id: 2});
+  knex('order_dishes').insert({quantity: 1, order_id: 1, dish_id: 3});
+  knex('order_dishes').insert({quantity: 2, order_id: 1, dish_id: 4});
+
+  knex('order_dishes').insert({quantity: 2, order_id: 2, dish_id: 2});
+};
