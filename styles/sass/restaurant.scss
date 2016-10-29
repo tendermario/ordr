@@ -1,0 +1,69 @@
+
+
+.container{
+    width: 100%;
+    background-color: white;
+
+   .deliver-food{
+
+    background-color:#FFD397 ;
+    font-size: larger;
+    height: 75px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    line-height: 90px;
+    text-align: center;
+    vertical-align: middle;
+    width:75%;
+
+
+    }
+
+
+    .deliver-food:hover{
+        background-color: #D82351;
+
+    }
+  .chit_container{
+    border-color: black;
+    border-style:solid;
+    background-color: #B2BFC7;
+    margin: auto ;
+    height: 500px;
+    width: 800px;
+
+  }
+  .order_chit{
+
+    header{
+      background-color: white;
+      width:100%;
+      position: relative;
+      left:0px;
+      top:0px;
+
+    }
+    .remove_chit{
+      color: blue;
+    }
+
+    padding: 10px 10px 10px 10px;
+    border-color: black;
+    border-style:solid;
+    float: left;
+    margin: 10px 10px 10px 10px;
+    background-color:#DADEE7;
+    ul{
+      padding:0;
+      li{
+      padding:none;
+      list-style-type: none;
+    }
+
+    }
+
+  }
+
+}
