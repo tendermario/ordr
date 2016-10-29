@@ -59,11 +59,8 @@
 	// Define our scripts in here.
 
 	(0, _jquery2.default)(function () {
-	  //.find('.menu-item__name')
-	  (0, _jquery2.default)('.menu-item').on('click', function (event) {
-	    // let dish = {}; 
-	    // dish.name = $(this).data('name');
 
+	  (0, _jquery2.default)('.menu-item').on('click', function (event) {
 	    (0, _cart_module2.default)((0, _jquery2.default)(this).find('div'));
 	  });
 	});
@@ -10308,20 +10305,26 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
+	var _utilities_module = __webpack_require__(3);
+
+	var _utilities_module2 = _interopRequireDefault(_utilities_module);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var cart_module = {};
-	var itemsInCart = (0, _jquery2.default)('.cart ul');
+
+	var $cartList = (0, _jquery2.default)('.cart__list');
 
 	var _renderCartFactory = function _renderCartFactory() {
-	  var $cartList = (0, _jquery2.default)('.cart__list');
 
 	  var _buildCartItem = function _buildCartItem(obj) {
 	    var $li = (0, _jquery2.default)('<li id="' + obj.converted_name + '">').addClass('cart__list--item');
 	    var $label = (0, _jquery2.default)('<label>').addClass('cart__list--item--name').text(obj.name);
-	    var $input = (0, _jquery2.default)('<input type="number">').addClass('cart__list--item--quantity');
+	    var $input = (0, _jquery2.default)('<input type="number" value="1" min="1">').addClass('cart__list--item--quantity');
+	    var $price = (0, _jquery2.default)('<span data-price=' + obj.price + '>').addClass("cart__list--item--price").text('$' + obj.price);
 
 	    $li.append($label);
+	    $li.append($price);
 	    $li.append($input);
 
 	    return $li;
@@ -10345,18 +10348,14 @@
 
 	var _renderCart = _renderCartFactory();
 
-	var convert = function convert(string) {
-	  return string.toLowerCase().replace(/\s/g, '_');
-	};
-
 	var toggleFromCart = function toggleFromCart($obj) {
 	  var item = {
 	    name: $obj.find('.menu-item__name').text(),
-	    //converted_name: $obj.find('.menu-item__name').data('name'),
 	    price: $obj.find('.menu-item__price').data('price')
 	  };
-	  item.converted_name = convert(item.name);
-	  var itemInList = (0, _jquery2.default)('.cart__list').find('#' + item.converted_name);
+
+	  item.converted_name = _utilities_module2.default.convertWhitespaces(item.name);
+	  var itemInList = $cartList.find('#' + item.converted_name);
 
 	  if (itemInList.length) {
 	    _renderCart.removeFromCart(itemInList);
@@ -10367,27 +10366,22 @@
 
 	exports.default = toggleFromCart;
 
-	// cart_module.toggleFromCart = function (item) {
-	//   const itemExists = itemsInCart.find((obj) => {
-	//     return obj.name === item.name;
-	//   });
-	//   !itemExists ? _addToCart(item) : _removeFromCart(item);
-	// };
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
 
-	// const _addToCart = function (item) {
-	//   itemsInCart.push(item);
-	//   _renderCart.render(itemsInCart);
-	// };
+	'use strict';
 
-	// const _removeFromCart = function (item) {
-	//   console.log("REMOVE FROM CART");
-	//   const newCartArr = itemsInCart.filter((obj) => {
-	//     return obj.name !== item.name;
-	//   });
-	//   _renderCart.render(newCartArr);
-	// };
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var utilities_module = {};
 
-	//export default cart_module;
+	utilities_module.convertWhitespaces = function (string) {
+	  return string.toLowerCase().replace(/\s/g, '_');
+	};
+
+	exports.default = utilities_module;
 
 /***/ }
 /******/ ]);
