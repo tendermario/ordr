@@ -21,81 +21,60 @@ const knex = require('knex')( {
 const customersApi = require('./routes/customers');
 const restaurantsApi = require('./routes/restaurants');
 
-//////////////// db stuff
-
-// Returns each dish for the restaurant
-// knex.select("orders.id", "dishes.name AS dish_name", "order_dishes.quantity", "customers.name AS customer_name")
-//   .from("restaurants")
-//     .join("orders", "restaurants.id", "orders.restaurant_id")
-//     .join("customers", "orders.customer_id", "customers.id")
-//     .join("order_dishes", "orders.id", "order_dishes.order_id")
-//     .join("dishes", "order_dishes.dish_id", "dishes.id")
-//       .where("restaurants.id", 7)
-//         .asCallback(function (err, result) {
-//           if (err) throw err;
-//           // console.log(result);
-//         });
-
-// For each unique order id from that restaurant:
-// give order id, customer name, date
-
-// get a list of all the dishes and their quantities.
 
 
-// replace 7 with restaurant's id number when doing routes
-
-const $ = require("jquery");
-
-$(function() {
 let restaurantsOrders = getOrders(7);
-});
 
-function getOrders(restaurant_id) {
-  knex.select("orders.id", "customers.name AS customer_name", "orders.order_date")
-    .from("orders")
-    .join("customers", "customers.id", "orders.customer_id")
-    .where("restaurant_id", restaurant_id)
-    .then(function (orderResult) {
-      return getOrdersArray(orderResult);
-    });
-}
+  function getOrders(restaurant_id) {
+    knex.select("orders.id", "customers.name AS customer_name", "orders.order_date")
+      .from("orders")
+      .join("customers", "customers.id", "orders.customer_id")
+      .where("restaurant_id", restaurant_id)
+      .then(function (orderResult) {
+        return getOrdersArray(orderResult);
+      });
+  }
 
-function getOrdersArray(orderResult) {
-  let arrayOrders = [];
-      for (order of orderResult) {
-        // console.log(order);
-        let id = order.id;
-        knex.select("dishes.name", "order_dishes.quantity")
-          .from("order_dishes")
-          .join("dishes", "dishes.id", "order_dishes.dish_id")
-          .where("order_dishes.order_id", order.id)
-          .then(function (dishes) {
-            let {customer_name, order_date} = order;
-            let totalDishes = formatDishes(dishes);
-            let prettyData = {
-              id,
-              customer_name,
-              order_date,
-              dishes: totalDishes
-            };
-            // console.log(prettyData);
+  function getOrdersArray(orderResult) {
+    let arrayOrders = [];
+    for (order of orderResult) {
+      // Promise.all returns a promise ofr an array
+      let id = order.id;
+      knex.select("dishes.name", "order_dishes.quantity")
+        .from("order_dishes")
+        .join("dishes", "dishes.id", "order_dishes.dish_id")
+        .where("order_dishes.order_id", order.id)
+        .then(function (dishes) {
+          let {customer_name, order_date} = order;
+          let totalDishes = formatDishes(dishes);
+          let prettyData = {
+            id,
+            customer_name,
+            order_date,
+            dishes: totalDishes
+          };
 
-            arrayOrders.push(prettyData);
-            if (orderResult[-1] = order) {
-              return arrayOrders;
-            }
-          });
-      }
-      // console.log(arrayOrders);
-}
+          arrayOrders.push(prettyData);
+          console.log('alpha');
+          console.log(arrayOrders.length);
+          console.log(orderResult.length);
+        });
+    }
+    console.log('beta');
+    console.log(arrayOrders);
+  }
 
-function formatDishes(dishes) {
-  let dishObj = {};
-  dishes.forEach(d => dishObj[d.name] = d.quantity);
-  return dishObj;
-}
+  function formatDishes(dishes) {
+    let dishObj = {};
+    dishes.forEach(d => dishObj[d.name] = d.quantity);
+    return dishObj;
+  }
 
-////////////////////
+
+
+
+
+
 
 //// Server
 

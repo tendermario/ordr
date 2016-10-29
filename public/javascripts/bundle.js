@@ -52,7 +52,73 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	(0, _jquery2.default)(function () {}); // Define our scripts in here.
+	(0, _jquery2.default)(function () {
+
+	  // Database pulling orders for customer page
+	  var restaurantsOrders = getOrders(7);
+
+	  function getOrders(restaurant_id) {
+	    knex.select("orders.id", "customers.name AS customer_name", "orders.order_date").from("orders").join("customers", "customers.id", "orders.customer_id").where("restaurant_id", restaurant_id).then(function (orderResult) {
+	      return getOrdersArray(orderResult);
+	    });
+	  }
+
+	  function getOrdersArray(orderResult) {
+	    var arrayOrders = [];
+	    var _iteratorNormalCompletion = true;
+	    var _didIteratorError = false;
+	    var _iteratorError = undefined;
+
+	    try {
+	      var _loop = function _loop() {
+	        order = _step.value;
+
+	        var id = order.id;
+	        knex.select("dishes.name", "order_dishes.quantity").from("order_dishes").join("dishes", "dishes.id", "order_dishes.dish_id").where("order_dishes.order_id", order.id).then(function (dishes) {
+	          var _order = order,
+	              customer_name = _order.customer_name,
+	              order_date = _order.order_date;
+
+	          var totalDishes = formatDishes(dishes);
+	          var prettyData = {
+	            id: id,
+	            customer_name: customer_name,
+	            order_date: order_date,
+	            dishes: totalDishes
+	          };
+	          arrayOrders.push(prettyData);
+	        });
+	      };
+
+	      for (var _iterator = orderResult[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	        _loop();
+	      }
+	    } catch (err) {
+	      _didIteratorError = true;
+	      _iteratorError = err;
+	    } finally {
+	      try {
+	        if (!_iteratorNormalCompletion && _iterator.return) {
+	          _iterator.return();
+	        }
+	      } finally {
+	        if (_didIteratorError) {
+	          throw _iteratorError;
+	        }
+	      }
+	    }
+
+	    console.log(arrayOrders);
+	  }
+
+	  function formatDishes(dishes) {
+	    var dishObj = {};
+	    dishes.forEach(function (d) {
+	      return dishObj[d.name] = d.quantity;
+	    });
+	    return dishObj;
+	  }
+	}); // Define our scripts in here.
 
 /***/ },
 /* 1 */
