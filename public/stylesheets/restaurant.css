@@ -1,13 +1,30 @@
-.container .chit_container {
-  border-color: black;
-  border-style: solid;
-  background-color: blue;
-  margin: auto auto;
-  height: 500px; }
-
-.container .order_chit {
-  border-color: black;
-  border-style: solid;
-  float: left;
-  margin: 10px 10px 10px 10px;
-  background-color: grey; }
+.container {
+  width: 100%;
+  background-color: white; }
+  .container .chit_container {
+    border-color: black;
+    border-style: solid;
+    background-color: #82827A;
+    margin: auto;
+    height: 500px;
+    width: 800px; }
+  .container .order_chit {
+    padding: 10px 10px 10px 10px;
+    border-color: black;
+    border-style: solid;
+    float: left;
+    margin: 10px 10px 10px 10px;
+    background-color: #4E484F; }
+    .container .order_chit header {
+      background-color: white;
+      width: 100%;
+      position: relative;
+      left: 0px;
+      top: 0px; }
+    .container .order_chit .remove_chit {
+      color: blue; }
+    .container .order_chit ul {
+      padding: 0; }
+      .container .order_chit ul li {
+        padding: none;
+        list-style-type: none; }

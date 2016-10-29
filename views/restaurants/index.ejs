@@ -1,9 +1,14 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
     <title>Ordr</title>
     <link rel="stylesheet" type="text/css" href="./stylesheets/restaurant.css">
+    <!-- <script type="text/javascript" src=".../public/javascripts/restaurant.js"></script> -->
+
+
   </head>
 <body>
 
@@ -20,9 +25,9 @@
       <%  dishes        = order.dishes;%>
       <%  order_date    = order.order_date;%>
 
-
     <div class="order_chit">
        <header>
+        <button class="remove_chit" type="button">Remove</button>
         <h2>Order <%=order_id%></h2>
         <h4><%=order_date%></h4>
        </header>
@@ -44,7 +49,24 @@
   <footer>
 
   </footer>
+
+      <script type="text/javascript">
+        import $ from "jquery";
+
+      $(function(){
+
+
+        alert('document ready!');
+
+        $(".remove_chit").on('click' ,function(event) {
+          alert('button clicked');
+          console.log("shittt");
+        });
+
+      });
+  </script>
   <script src="./javascripts/bundle.js"></script>
+
 </body>
 </html>
 

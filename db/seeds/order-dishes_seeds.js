@@ -1,4 +1,4 @@
-exports.seed = function(knex, Promise) {
+dexports.seed = function(knex, Promise) {
 //   return knex('order_dishes').del()
 //     .then(function () {
 //       return Promise.all([
