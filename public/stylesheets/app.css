@@ -523,10 +523,24 @@ textarea {
   width: 38%;
   border-left: 1px solid black; }
 
+.sidebar__header {
+  /* <header> */
+  height: 42px;
+  width: 100%;
+  background-color: lightgrey;
+  text-align: center;
+  border-bottom: 1px solid black; }
+
+#restaurant__name {
+  /* <h1> */
+  margin: 0px auto;
+  font-size: 1.2em;
+  line-height: 42px; }
+
 .cart {
   /* <section> */
   position: absolute;
-  top: 0px;
+  top: 42px;
   right: 0px;
   bottom: 90px;
   left: 0px; }
@@ -546,23 +560,9 @@ textarea {
 .cart__list--item:hover {
   background-color: red; }
 
-.cart__list--item fieldset {
-  /* <fieldset> */
-  height: 100%;
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-  border: 0px; }
-
-.cart__list--item--name {
-  /* <label> */
-  float: left;
-  margin: 0px auto;
-  padding: 15px; }
-
 .cart__list--item--quantity {
   /* <input> */
-  float: right;
+  float: left;
   height: 25px;
   margin: 12px 15px;
   padding: 0px 10px;
@@ -572,6 +572,12 @@ textarea {
 .cart__list--item--quantity:focus {
   /* <input> */
   outline: none; }
+
+.cart__list--item--name {
+  /* <label> */
+  float: left;
+  margin: 0px auto;
+  padding: 15px; }
 
 .cart__list--item--dollarSign {
   /* <span> */

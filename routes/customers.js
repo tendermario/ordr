@@ -15,10 +15,14 @@ module.exports = (db) => {
       menuList.forEach((obj) => {
         obj.name_underscored = utilities_module.convertWhitespace(obj.name);
       });
- 
+      console.log(menuList);
       res.render("../views/customers/index", {menuList});
     });
   
+  });
+
+  router.post("/submitCart", (req, res) => {
+    console.log(req.body);
   });
 
   return router;

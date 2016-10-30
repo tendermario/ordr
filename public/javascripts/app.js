@@ -4,7 +4,8 @@ import $ from "jquery";
 import cart_module from './cart_module.js';
 
 $(function() {
-  // Cart_Module
+
+// Cart_Module
   const $cartList = $('.cart__list');
 
   $('.menu-item').on('click', function () {
@@ -16,11 +17,32 @@ $(function() {
     const basePrice = Number($(this).siblings('.cart__list--item--basePrice').text());
     const totalPrice = basePrice * Number( $(this).val() );
 
+    console.log("==============");
+    console.log($price);
     $price.text(totalPrice);
 
-    $('.cart__total-cost').val(cart_module.calculateTotalCost());
+    $('.cart__total-cost').val('Total: $' + cart_module.calculateTotalCost());
   });
 
+  $('.sidebar form').on('submit', function(event) { 
+    event.preventDefault(); 
+    let order = {
+      phone_number: "306-715-3342",
+      name: "joey",
+      dishes: {}
+    };
+
+    $('.cart__list li').each(function(item) {
+      const name = $(this).children('.cart__list--item--name').text();
+      const quantity = $(this).children('.cart__list--item--quantity').val();
+
+      order.dishes[name] = quantity;
+    });
+
+    console.log(order);
+
+    cart_module.submitCart()
+  });
 
 // Database pulling orders for customer page
   let restaurantsOrders = getOrders(7);
