@@ -1,11 +1,7 @@
 "use strict";
 const express = require('express');
 const router = express.Router();
-
-
-
-// when accessing /restaurants, use these paths
-// e.g. my.com/restaurants/new => "/new"
+//var client = require('twilio')('TWILIO_ACCOUNT_SID', 'TWILIO_AUTH_TOKEN');
 module.exports = (db) => {
     router.get("/", (req, res) => {
         // hard-coding restaurant as 1:
@@ -15,17 +11,19 @@ module.exports = (db) => {
             });
         });
     });
-
     router.post("/", function(req, res) {
         console.log(req.body.order_id);
-
         let customerNum = db.getPhoneNumber(req.body.order_id).then((result) => {
-            console.log('twilio: ',result);
+            console.log('twilio: ', result);
+            console.log("before the redirect");
+            console.log('after the redirect');
+            res.send('ok');
+            console.log('after res.send');
         });
 
-        res.contentType('json');
-        res.send({some: JSON.stringify({response: 'json'})});
+
     });
+
 
     router.get("/:id", (req, res) => {
         // hard-coding restaurant as 1:

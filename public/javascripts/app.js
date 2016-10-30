@@ -47,6 +47,7 @@ $(function() {
             success: function(data) {
                 console.log(data);
                 console.log('process sucess');
+                window.location.replace('/restaurants');
             },
             error: function() {
                 console.log('process error');
