@@ -57,9 +57,11 @@ dbMethods = {
   // restaurant triggers order being cleared
   orderSuccess: function(order_id, cb) {},
   // customer posts a new order
-  newOrder: function(order_info, cb) {}
+  newOrder: function(order_info, cb) {},
   // customer page pulls the orders for the restaurant
-  // newOrder: function(restaurant_id, cb) {}
+  getMenu: function(restaurant_id) {
+    return knex.select().from("dishes").where("restaurant_id", restaurant_id);
+  }
 }
 
 module.exports =  {
