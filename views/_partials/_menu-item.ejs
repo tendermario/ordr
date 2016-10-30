@@ -1,12 +1,8 @@
 <li class="menu-item">
   <img src="#"></img>
   <div>
-    <% const convert = function (string) { %>
-      <% return string.toLowerCase().replace(/\s/g, '_'); %>
-    <% }; %>
-    <% let menuItem_name = "Lobster Pasta"; %>
-    <% let menuItem_converted = convert(menuItem_name); %>
-    <h2 class="menu-item__name" data-name="<%= menuItem_converted %>"><%= menuItem_name %></h2>
-    <span class="menu-item__price" data-price="20">$20</span>
+    <h2 class="menu-item__name" data-name="<%= item.name_underscored %>"><%= item.name %></h2>
+    <span class="menu-item__dollarSign">$</span>
+    <span class="menu-item__price"><%= item.price %></span>
   </div>
 </li>

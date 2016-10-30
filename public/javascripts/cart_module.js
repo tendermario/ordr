@@ -7,13 +7,18 @@ let $cartList = $('.cart__list');
 
 const _renderCartFactory = function () {
   const _buildCartItem = (obj) => {
-    const $li = $(`<li id="${obj.converted_name}">`).addClass('cart__list--item');
+    const $li = $(`<li id="${obj.name_underscoredSpaces}">`).addClass('cart__list--item');
     const $label = $('<label>').addClass('cart__list--item--name').text(obj.name);
     const $input = $('<input type="number" value="1" min="1">').addClass('cart__list--item--quantity');
-    const $price = $(`<span data-price=${obj.price}>`).addClass("cart__list--item--price").text('$' + obj.price);
+    const $dollarSign = $('<span class="cart__list--item--dollarSign">').text('$');
+    const $price = $('<span class="cart__list--item--price">').text(obj.price);
+    const $basePrice = $('<span class="cart__list--item--basePrice">').text(obj.price);
+    console.log(obj.price);
 
     $li.append($label);
+    $li.append($dollarSign);
     $li.append($price);
+    $li.append($basePrice);
     $li.append($input);
 
     return $li;
@@ -22,7 +27,9 @@ const _renderCartFactory = function () {
   return {
     addToCart: (item) => {
       const $cartItem = _buildCartItem(item);
+
       $cartList.append($cartItem);
+      $('.cart__total-cost').val(cart_module.calculateTotalCost());
     },
     removeFromCart: ($item) => {
       $item.remove();
@@ -41,11 +48,11 @@ const _renderCart = _renderCartFactory();
 cart_module.toggleFromCart = function ($obj) {
   const item = {
     name: $obj.find('.menu-item__name').text(),
-    price: $obj.find('.menu-item__price').data('price'),
+    name_underscoredSpaces: $obj.find('.menu-item__name').attr('data-name'),
+    price: $obj.find('.menu-item__price').text(),
   };
-  
-  item.converted_name = utilities_module.convertWhitespaces(item.name);
-  const itemInList = $cartList.find('#' + item.converted_name);
+
+  const itemInList = $cartList.find('#' + item.name_underscoredSpaces);
 
   if (itemInList.length) {
     _renderCart.removeFromCart(itemInList);
@@ -58,17 +65,14 @@ cart_module.calculateTotalCost = function () {
   let totalCost = 0;
 
   $('.cart__list li').each(function() {
-    const $itemPrice = $(this).children('span').attr('data-totalPrice');
-
-    console.log($itemPrice);
-    
+    const $itemPrice = Number( $(this).find('.cart__list--item--price').text() );
     totalCost += Number($itemPrice);
   });
+  console.log(totalCost);
   return totalCost;
 };
 
 
 export default cart_module;
-
 
 
