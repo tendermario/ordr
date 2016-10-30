@@ -77,7 +77,6 @@ dbMethods = {
               [d.getHours().padLeft(),
                d.getMinutes().padLeft(),
                d.getSeconds().padLeft()].join(':');
-    console.log(typeof dformat);
     // add a new customer
     newCustomer(order_info).returning('id')
       .then((customer_id) => {
@@ -90,14 +89,13 @@ dbMethods = {
         }).returning('id').then((order_id) => {
           // add to order_dishes table
           for (dish in order_info.dishes) {
-            console.log(dish);
-            console.log(order_info.dishes);
-            knex('dishes').select('dishes.id').where(dish, 'name')
+            knex('dishes').select('id').where('name', dish).returning('id')
             .then((dish_id) => {
+              console.log(order_info.dishes[dish]);
               knex('order_dishes').insert({
                 order_id: order_id[0],
-                dish_id,
-                quantity
+                dish_id: dish_id[0].id,
+                quantity: order_info.dishes[dish]
               });
             });
           }
@@ -107,6 +105,9 @@ dbMethods = {
   // customer page pulls the orders for the restaurant
   getMenu: function(restaurant_id) {
     return knex.select().from("dishes").where("restaurant_id", restaurant_id);
+  },
+  getRestaurant: function(restaurant_id) {
+    return knex.select().from("restaurants").where("id", restaurant_id);
   }
 }
 
@@ -116,13 +117,12 @@ module.exports =  {
   }
 }
 
-order_info = {
-  customer: "Batman",
-  phone_number: '16048456782',
-  dishes: {
-    duck:1,
-    pig:4
-  }
-}
+// order_info = {
+//   customer: "Batman",
+//   phone_number: '16048456782',
+//   dishes: {
+//     duck:1,
+//     'a pig':4
+//   }
+// }
 
-dbMethods.newOrder(order_info);
