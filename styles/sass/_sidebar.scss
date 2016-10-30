@@ -29,6 +29,10 @@
       border-bottom: 1px solid black;
     }
 
+    .cart__list--item:hover {
+      background-color: red;
+    }
+
     .cart__list--item fieldset { /* <fieldset> */
       height: 100%;
       width: 100%;
@@ -55,11 +59,20 @@
         outline: none;
       }
 
-    .cart__list--item--price { /* <span> */
+    .cart__list--item--dollarSign { /* <span> */
       display: block;
       float: right;
 
       margin: 17px 15px 15px 0px;
+    }
+
+    .cart__list--item--price { /* <span> */
+      display: block;
+      float: right;
+    }
+
+    .cart__list--item--basePrice { /* <span> */
+      visibility: hidden;
     }
 
 .cart__footer { /* <footer> */

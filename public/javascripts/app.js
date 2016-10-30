@@ -12,18 +12,15 @@ $(function() {
   });
 
   $cartList.on('input', '.cart__list--item--quantity', function () {
-    const $price_span = $(this).siblings('span');
-    let basePrice = +$price_span.attr('data-price');
-    const totalPrice = basePrice * Number($('.cart__list--item--quantity').val());
- 
-    $price_span.attr('data-totalPrice', totalPrice);
-    $price_span.text('$' + totalPrice);
+    const $price = $(this).siblings('.cart__list--item--price');
+    const basePrice = Number($(this).siblings('.cart__list--item--basePrice').text());
+    const totalPrice = basePrice * Number( $(this).val() );
+
+    $price.text(totalPrice);
+
     $('.cart__total-cost').val(cart_module.calculateTotalCost());
   });
 
-  $cartList.on('change', 'li', function () {
-    $('.cart__total-cost').val(cart_module.calculateTotalCost());
-  });
 
 // Database pulling orders for customer page
   let restaurantsOrders = getOrders(7);
