@@ -61,7 +61,20 @@ dbMethods = {
   // customer page pulls the orders for the restaurant
   getMenu: function(restaurant_id) {
     return knex.select().from("dishes").where("restaurant_id", restaurant_id);
+  },
+
+    //once order is done the order number is posted to the
+    ///restaurants endpoint via an ajax. use this to determine an number from twilio to text
+  getPhoneNumber: function(order_id){
+  return knex.select("customers.phone_number")
+    .from("orders")
+    .join("customers", "customers.id", "orders.customer_id")
+    .where("orders.id",order_id)
+    .then(function (result) {
+        return result[0].phone_number;
+      });
   }
+//select phone_number from orders join customers on orders.id = customers.id where orders.id = 1;
 }
 
 module.exports =  {

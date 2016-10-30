@@ -17,7 +17,11 @@ module.exports = (db) => {
     });
 
     router.post("/", function(req, res) {
-        console.log(req.body);
+        console.log(req.body.order_id);
+
+        let customerNum = db.getPhoneNumber(req.body.order_id).then((result) => {
+            console.log('twilio: ',result);
+        });
 
         res.contentType('json');
         res.send({some: JSON.stringify({response: 'json'})});
