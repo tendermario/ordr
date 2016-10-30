@@ -42,6 +42,14 @@ function formatDishes(dishes) {
   return dishObj;
 }
 
+function newCustomer(customer) {
+  return knex("customers").insert({
+      name: customer.customer_name,
+      phone_number: customer.phone_number,
+      email: ""
+    });
+}
+
 // database functions to give to the views
 dbMethods = {
   // restaurant pulls all the orders for itself
@@ -57,7 +65,7 @@ dbMethods = {
   // restaurant triggers order being cleared
   orderSuccess: function(order_id, cb) {},
   // customer posts a new order
-  newOrder: function(order_info, cb) {
+  newOrder: function(order_info) {
     // current time
     Number.prototype.padLeft = function(base,chr){
     var  len = (String(base || 10).length - String(this).length)+1;
@@ -69,27 +77,32 @@ dbMethods = {
               [d.getHours().padLeft(),
                d.getMinutes().padLeft(),
                d.getSeconds().padLeft()].join(':');
-    console.log(dformat);
-    knex('orders').insert({
-      order_date: dformat,
-      completed: false,
-      customer_id: 1,
-      restaurant_id: 1
-    }).returning('order_id', order_info.dishes).then((order_id) => {
-      for (dish in order_info.dishes) {
-        knex('order_dishes').insert({
-          order_id,
-          dish_id: dish,
-          quantity
+    console.log(typeof dformat);
+    // add a new customer
+    newCustomer(order_info).returning('id')
+      .then((customer_id) => {
+    // add to order table
+        knex('orders').insert({
+          order_date: dformat,
+          completed: false,
+          customer_id: customer_id[0],
+          restaurant_id: 1
+        }).returning('id').then((order_id) => {
+          // add to order_dishes table
+          for (dish in order_info.dishes) {
+            console.log(dish);
+            console.log(order_info.dishes);
+            knex('dishes').select('dishes.id').where(dish, 'name')
+            .then((dish_id) => {
+              knex('order_dishes').insert({
+                order_id: order_id[0],
+                dish_id,
+                quantity
+              });
+            });
+          }
         });
-      }
-      // done insert
-    });
-
-
-
-
-
+      });
   },
   // customer page pulls the orders for the restaurant
   getMenu: function(restaurant_id) {
@@ -103,4 +116,13 @@ module.exports =  {
   }
 }
 
-dbMethods.newOrder();
+order_info = {
+  customer: "Batman",
+  phone_number: '16048456782',
+  dishes: {
+    duck:1,
+    pig:4
+  }
+}
+
+dbMethods.newOrder(order_info);
