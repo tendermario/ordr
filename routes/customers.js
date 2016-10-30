@@ -1,5 +1,4 @@
 "use strict";
-
 const express = require('express');
 const utilities_module = require('../utilities_module.js');
 const router  = express.Router();
@@ -15,11 +14,13 @@ module.exports = (db) => {
       menuList.forEach((obj) => {
         obj.name_underscored = utilities_module.convertWhitespace(obj.name);
       });
- 
+
       res.render("../views/customers/index", {menuList});
     });
-  
+
   });
 
   return router;
+
 }
+

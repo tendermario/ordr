@@ -1,3 +1,7 @@
+ .finished{
+      background-color: black !important;
+      color: white !important;
+    }
 
 
 .container{
@@ -17,8 +21,6 @@
     text-align: center;
     vertical-align: middle;
     width:75%;
-
-
     }
 
 
@@ -31,14 +33,21 @@
     border-style:solid;
     background-color: #B2BFC7;
     margin: auto ;
-    height: 500px;
-    width: 800px;
+
+    width: 1000px;
+    height:800px;
 
   }
-  .order_chit{
 
+  .order_chit{
+    padding: 10px 10px 10px 10px;
+    border-color: black;
+    border-style:solid;
+    float: left;
+    margin: 10px 10px 10px 10px;
+    background-color:#DADEE7;
     header{
-      background-color: white;
+
       width:100%;
       position: relative;
       left:0px;
@@ -48,13 +57,10 @@
     .remove_chit{
       color: blue;
     }
+    .remove_chit_2{
+      color: blue;
+    }
 
-    padding: 10px 10px 10px 10px;
-    border-color: black;
-    border-style:solid;
-    float: left;
-    margin: 10px 10px 10px 10px;
-    background-color:#DADEE7;
     ul{
       padding:0;
       li{
@@ -62,8 +68,10 @@
       list-style-type: none;
     }
 
+
     }
 
   }
 
 }
+

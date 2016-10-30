@@ -1,3 +1,7 @@
+.finished {
+  background-color: black !important;
+  color: white !important; }
+
 .container {
   width: 100%;
   background-color: white; }
@@ -20,8 +24,8 @@
     border-style: solid;
     background-color: #B2BFC7;
     margin: auto;
-    height: 500px;
-    width: 800px; }
+    width: 1000px;
+    height: 800px; }
   .container .order_chit {
     padding: 10px 10px 10px 10px;
     border-color: black;
@@ -30,12 +34,13 @@
     margin: 10px 10px 10px 10px;
     background-color: #DADEE7; }
     .container .order_chit header {
-      background-color: white;
       width: 100%;
       position: relative;
       left: 0px;
       top: 0px; }
     .container .order_chit .remove_chit {
+      color: blue; }
+    .container .order_chit .remove_chit_2 {
       color: blue; }
     .container .order_chit ul {
       padding: 0; }

@@ -12,22 +12,25 @@ const knex = require('knex')( {
 });
 
 function getOrdersArray(orderResult) {
-  let arrayOrders = [];
+let arrayOrders = [];
   for (order of orderResult) {
-    // Promise.all returns a promise for an array
-    let id = order.id;
+   let id = order.id;
+
     var promise = knex.select("dishes.name", "order_dishes.quantity")
       .from("order_dishes")
       .join("dishes", "dishes.id", "order_dishes.dish_id")
       .where("order_dishes.order_id", order.id)
       .then(function (dishes) {
-        let {customer_name, order_date} = order;
+
+        let {customer_name, order_date, completed,restaurant_id} = order;
         let totalDishes = formatDishes(dishes);
         let prettyData = {
           id,
           customer_name,
           order_date,
-          dishes: totalDishes
+          dishes: totalDishes,
+          completed,
+          restaurant_id
         };
         return prettyData;
       });
@@ -46,12 +49,13 @@ function formatDishes(dishes) {
 dbMethods = {
   // restaurant pulls all the orders for itself
   getOrders: function(restaurant_id) {
-    return knex.select("orders.id", "customers.name AS customer_name", "orders.order_date")
+    return knex.select("orders.id", "customers.name AS customer_name", "orders.order_date","orders.completed","orders.restaurant_id")
       .from("orders")
       .join("customers", "customers.id", "orders.customer_id")
       .where("restaurant_id", restaurant_id)
       .then(function (orderResult) {
-        return getOrdersArray(orderResult);
+
+        return (getOrdersArray(orderResult));
       });
     },
   // restaurant triggers order being cleared
@@ -61,7 +65,26 @@ dbMethods = {
   // customer page pulls the orders for the restaurant
   getMenu: function(restaurant_id) {
     return knex.select().from("dishes").where("restaurant_id", restaurant_id);
+  },
+
+    //once order is done the order number is posted to the
+    ///restaurants endpoint via an ajax. use this to determine an number from twilio to text
+  getPhoneNumber: function(order_id){
+  return knex.select("customers.phone_number")
+    .from("orders")
+    .join("customers", "customers.id", "orders.customer_id")
+    .where("orders.id",order_id)
+    .then(function (result) {
+        return result[0].phone_number;
+      });
+  },
+  completeOrder: function(order_id){
+    console.log('inside completeOrder');
+    return knex("orders").where("id",order_id).update("completed",true);
   }
+
+
+//select phone_number from orders join customers on orders.id = customers.id where orders.id = 1;
 }
 
 module.exports =  {

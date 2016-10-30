@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+            <title>
+                Ordr
+            </title>
+            <link href="./stylesheets/restaurant.css" rel="stylesheet" type="text/css">
+                <!-- <script type="text/javascript" src=".../public/javascripts/restaurant.js"></script> -->
+            </link>
+        </meta>
+    </head>
+    <body>
+
+        <main class="container">
+
+            <div class="chit_container">
+
+      <%let order_id;%>
+      <%let customer_name;%>
+      <%let dishes;%>
+      <%let order_date;%>
+      <%let completed;%>
+      <%=JSON.stringify(result)%>
+      <% for(var order of result) {%>
+          <div class="order_chit"
+               data-order_id="<%=order.id%>"
+               data-customer_name="<%=order.customer_name%>"
+               data-dishes='<%-JSON.stringify(order.dishes)%>'
+               data-order_date="<%=order.order_date%>"
+               data-completed="<%=order.completed%>"
+          >
+                    <header>
+                       <!--  <button class="remove_chit" type="button">Queued: click to finish</button> -->
+                        <%=order.completed%>
+                        <form id="remove_chit_2" method="post" action="/restaurants" >
+                           <input type="hidden" name="order_id" value="<%=order.id%>">
+                           <input type="submit" value="Finish">
+                        </form>
+
+                        <h3 id="order_id" ><%=order.id%></h3>
+                        <h4 id="order_id" ><%=order.order_date%></h4>
+                    </header>
+
+                        <ul>
+                            <%for(let key in order.dishes) {%>
+                            <li>
+                                <span id="dish_name"><%=key%></span>
+                                <span id="dish_quantity"><%=order.dishes[key]%></span>
+                            </li>
+                            <%}%>
+                        </ul>
+
+          </div>
+       <%}%>
+
+            </div>
+        </main>
+        <footer>
+        </footer>
+        <script src="./javascripts/bundle.js">
+        </script>
+    </body>
+</html>
