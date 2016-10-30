@@ -57,7 +57,40 @@ dbMethods = {
   // restaurant triggers order being cleared
   orderSuccess: function(order_id, cb) {},
   // customer posts a new order
-  newOrder: function(order_info, cb) {},
+  newOrder: function(order_info, cb) {
+    // current time
+    Number.prototype.padLeft = function(base,chr){
+    var  len = (String(base || 10).length - String(this).length)+1;
+    return len > 0? new Array(len).join(chr || '0')+this : this;};
+    let d = new Date,
+    dformat = [(d.getMonth()+1).padLeft(),
+               d.getDate().padLeft(),
+               d.getFullYear()].join('/') +' ' +
+              [d.getHours().padLeft(),
+               d.getMinutes().padLeft(),
+               d.getSeconds().padLeft()].join(':');
+    console.log(dformat);
+    knex('orders').insert({
+      order_date: dformat,
+      completed: false,
+      customer_id: 1,
+      restaurant_id: 1
+    }).returning('order_id', order_info.dishes).then((order_id) => {
+      for (dish in order_info.dishes) {
+        knex('order_dishes').insert({
+          order_id,
+          dish_id: dish,
+          quantity
+        });
+      }
+      // done insert
+    });
+
+
+
+
+
+  },
   // customer page pulls the orders for the restaurant
   getMenu: function(restaurant_id) {
     return knex.select().from("dishes").where("restaurant_id", restaurant_id);
@@ -69,3 +102,5 @@ module.exports =  {
     onConnect(dbMethods);
   }
 }
+
+dbMethods.newOrder();
