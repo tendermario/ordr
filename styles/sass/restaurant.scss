@@ -1,3 +1,7 @@
+ .finished{
+      background-color: black !important;
+      color: white !important;
+    }
 
 
 .container{
@@ -17,8 +21,6 @@
     text-align: center;
     vertical-align: middle;
     width:75%;
-
-
     }
 
 
@@ -35,10 +37,20 @@
     width: 800px;
 
   }
+
   .order_chit{
+    padding: 10px 10px 10px 10px;
+    border-color: black;
+    border-style:solid;
+    float: left;
+    margin: 10px 10px 10px 10px;
+    background-color:#DADEE7;
+
+
+
 
     header{
-      background-color: white;
+
       width:100%;
       position: relative;
       left:0px;
@@ -49,12 +61,6 @@
       color: blue;
     }
 
-    padding: 10px 10px 10px 10px;
-    border-color: black;
-    border-style:solid;
-    float: left;
-    margin: 10px 10px 10px 10px;
-    background-color:#DADEE7;
     ul{
       padding:0;
       li{
@@ -62,8 +68,10 @@
       list-style-type: none;
     }
 
+
     }
 
   }
 
 }
+

@@ -14,15 +14,16 @@
     <body>
 
         <main class="container">
-
+test
             <div class="chit_container">
-                <%let order_id;%>
+
+      <%let order_id;%>
       <%let customer_name;%>
       <%let dishes;%>
       <%let order_date;%>
       <%let completed;%>
 
-      <% for(var order of dbData) {%>
+      <% for(var order of result) {%>
           <div class="order_chit"
                data-order_id="<%=order.id%>"
                data-customer_name="<%=order.customer_name%>"
@@ -46,7 +47,9 @@
                         </ul>
 
           </div>
-                <%}%>
+       <%}%>
+
+
 
             </div>
         </main>
