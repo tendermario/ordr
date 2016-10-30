@@ -14,7 +14,7 @@
     <body>
 
         <main class="container">
-test
+
             <div class="chit_container">
 
       <%let order_id;%>
@@ -22,7 +22,7 @@ test
       <%let dishes;%>
       <%let order_date;%>
       <%let completed;%>
-
+      <%=JSON.stringify(result)%>
       <% for(var order of result) {%>
           <div class="order_chit"
                data-order_id="<%=order.id%>"
@@ -32,7 +32,13 @@ test
                data-completed="<%=order.completed%>"
           >
                     <header>
-                        <button class="remove_chit" type="button">Queued: click to finish</button>
+                       <!--  <button class="remove_chit" type="button">Queued: click to finish</button> -->
+                        <%=order.completed%>
+                        <form id="remove_chit_2" method="post" action="/restaurants" >
+                           <input type="hidden" name="order_id" value="<%=order.id%>">
+                           <input type="submit" value="Finish">
+                        </form>
+
                         <h3 id="order_id" ><%=order.id%></h3>
                         <h4 id="order_id" ><%=order.order_date%></h4>
                     </header>
@@ -48,8 +54,6 @@ test
 
           </div>
        <%}%>
-
-
 
             </div>
         </main>

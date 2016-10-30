@@ -33,8 +33,9 @@
     border-style:solid;
     background-color: #B2BFC7;
     margin: auto ;
-    height: 500px;
-    width: 800px;
+
+    width: 1000px;
+    height:800px;
 
   }
 
@@ -45,10 +46,6 @@
     float: left;
     margin: 10px 10px 10px 10px;
     background-color:#DADEE7;
-
-
-
-
     header{
 
       width:100%;
@@ -58,6 +55,9 @@
 
     }
     .remove_chit{
+      color: blue;
+    }
+    .remove_chit_2{
       color: blue;
     }
 

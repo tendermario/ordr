@@ -24,8 +24,8 @@
     border-style: solid;
     background-color: #B2BFC7;
     margin: auto;
-    height: 500px;
-    width: 800px; }
+    width: 1000px;
+    height: 800px; }
   .container .order_chit {
     padding: 10px 10px 10px 10px;
     border-color: black;
@@ -39,6 +39,8 @@
       left: 0px;
       top: 0px; }
     .container .order_chit .remove_chit {
+      color: blue; }
+    .container .order_chit .remove_chit_2 {
       color: blue; }
     .container .order_chit ul {
       padding: 0; }
