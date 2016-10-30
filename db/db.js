@@ -14,7 +14,7 @@ const knex = require('knex')( {
 function getOrdersArray(orderResult) {
   let arrayOrders = [];
   for (order of orderResult) {
-    // Promise.all returns a promise ofr an array
+    // Promise.all returns a promise for an array
     let id = order.id;
     var promise = knex.select("dishes.name", "order_dishes.quantity")
       .from("order_dishes")
@@ -43,29 +43,29 @@ function formatDishes(dishes) {
 }
 
 // database functions to give to the views
-
 dbMethods = {
   // restaurant pulls all the orders for itself
   getOrders: function(restaurant_id) {
-  return knex.select("orders.id", "customers.name AS customer_name", "orders.order_date")
-    .from("orders")
-    .join("customers", "customers.id", "orders.customer_id")
-    .where("restaurant_id", restaurant_id)
-    .then(function (orderResult) {
-      return getOrdersArray(orderResult);
-    });
-  },
+    return knex.select("orders.id", "customers.name AS customer_name", "orders.order_date")
+      .from("orders")
+      .join("customers", "customers.id", "orders.customer_id")
+      .where("restaurant_id", restaurant_id)
+      .then(function (orderResult) {
+        return getOrdersArray(orderResult);
+      });
+    },
   // restaurant triggers order being cleared
   orderSuccess: function(order_id, cb) {},
   // customer posts a new order
-  newOrder: function(order_info, cb) {}
+  newOrder: function(order_info, cb) {},
+  // customer page pulls the orders for the restaurant
+  getMenu: function(restaurant_id) {
+    return knex.select().from("dishes").where("restaurant_id", restaurant_id);
+  }
 }
-
 
 module.exports =  {
   connect: (onConnect) => {
-
     onConnect(dbMethods);
-
   }
 }
