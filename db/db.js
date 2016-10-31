@@ -13,6 +13,7 @@ const knex = require('knex')( {
 
 function getOrdersArray(orderResult) {
   let arrayOrders = [];
+  console.log(orderResult);
   for (order of orderResult) {
     // Promise.all returns a promise for an array
     let id = order.id;
@@ -103,7 +104,7 @@ dbMethods = {
               order_id: order_id[0],
               dish_id: dish_id[0].id,
               quantity: quantityArray[index]
-            });
+            }, ['order_id', 'dish_id', 'quantity']).then();
           });
         });
       });
@@ -123,3 +124,19 @@ module.exports =  {
     onConnect(dbMethods);
   }
 }
+
+// dbMethods.getOrders(1).then((result) => {console.log(result);});
+
+order_info = {
+  customer: "Shaq",
+  phone_number: '16048456782',
+  dishes: {
+    'dipping sauce':1,
+    'linguini':1,
+    'bagel':5,
+    'dipping sauce':1
+  }
+}
+
+dbMethods.newOrder(order_info);
+
