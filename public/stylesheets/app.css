@@ -514,6 +514,61 @@ textarea {
 #lobster {
   color: red; }
 
+#submission-window--background {
+  /* <div> */
+  display: none;
+  cursor: pointer;
+  position: fixed;
+  top: 60px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: rgba(0, 0, 0, 0.8); }
+
+.submission-window {
+  /* <div> */
+  position: relative;
+  visibility: hidden;
+  z-index: 2;
+  position: fixed;
+  top: 60px;
+  left: 0px;
+  right: 0px;
+  max-width: 800px;
+  width: 100%;
+  margin: 0px auto;
+  margin-top: 20px;
+  border-radius: 6px;
+  border: 1px solid black; }
+
+.submission-window__cart {
+  /* <section> */
+  position: relative;
+  background-color: white; }
+
+.submission-window__cart__footer {
+  /* <footer> */
+  position: relative;
+  height: 60px;
+  max-width: 800px;
+  width: 100%;
+  margin: 0px auto; }
+
+.submission-window__total-cost {
+  /* <input> */
+  border-bottom: 1px solid black !important; }
+
+.submission-window__name, .submission-window__phone-number {
+  /* <input> */
+  float: left;
+  height: 40px;
+  width: 50%;
+  text-align: center; }
+
+.submission-window__name:focus, .submission-window__phone-number:focus {
+  /* <input> */
+  outline: none; }
+
 .sidebar {
   /* <div> */
   position: fixed;
@@ -523,10 +578,24 @@ textarea {
   width: 38%;
   border-left: 1px solid black; }
 
+.sidebar__header {
+  /* <header> */
+  height: 42px;
+  width: 100%;
+  background-color: lightgrey;
+  text-align: center;
+  border-bottom: 1px solid black; }
+
+#restaurant__name {
+  /* <h1> */
+  margin: 0px auto;
+  font-size: 1.2em;
+  line-height: 42px; }
+
 .cart {
   /* <section> */
   position: absolute;
-  top: 0px;
+  top: 42px;
   right: 0px;
   bottom: 90px;
   left: 0px; }
@@ -546,23 +615,9 @@ textarea {
 .cart__list--item:hover {
   background-color: red; }
 
-.cart__list--item fieldset {
-  /* <fieldset> */
-  height: 100%;
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-  border: 0px; }
-
-.cart__list--item--name {
-  /* <label> */
-  float: left;
-  margin: 0px auto;
-  padding: 15px; }
-
 .cart__list--item--quantity {
   /* <input> */
-  float: right;
+  float: left;
   height: 25px;
   margin: 12px 15px;
   padding: 0px 10px;
@@ -572,6 +627,12 @@ textarea {
 .cart__list--item--quantity:focus {
   /* <input> */
   outline: none; }
+
+.cart__list--item--name {
+  /* <label> */
+  float: left;
+  margin: 0px auto;
+  padding: 15px; }
 
 .cart__list--item--dollarSign {
   /* <span> */
@@ -611,6 +672,7 @@ textarea {
   height: 50px;
   width: 100%;
   background-color: none;
+  border: 0px;
   border-top: 1px solid black; }
 
 .container {
@@ -631,3 +693,9 @@ li {
 * {
   box-sizing: border-box;
   font-family: helvetica; }
+
+.show--block {
+  display: block !important; }
+
+.show--visability {
+  visibility: visible !important; }

@@ -1,0 +1,67 @@
+#submission-window--background { /* <div> */
+  display: none;
+  cursor: pointer;
+   position: fixed;
+    top: $navbar__height;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+  background: rgba(0,0,0,0.8);
+}
+
+.submission-window { /* <div> */
+  position: relative;
+  visibility: hidden;
+  z-index: 2;
+  position: fixed;
+    top: $navbar__height;
+    left: 0px;
+    right: 0px;
+  
+  max-width: $submission-window__cart--max-width;
+  width: 100%;
+
+  margin: 0px auto;
+  margin-top: 20px;
+
+  border-radius: 6px;
+  border: 1px solid black;
+}
+
+.submission-window__cart { /* <section> */
+  position: relative;
+  
+
+  background-color: white;
+}
+
+.submission-window__cart__footer { /* <footer> */
+  position: relative;
+  height: 60px;
+  max-width: $submission-window__cart--max-width;
+  width: 100%;
+
+  margin: 0px auto;
+
+}
+
+.submission-window__total-cost { /* <input> */
+  border-bottom: 1px solid black !important;
+}
+
+.submission-window__name, .submission-window__phone-number { /* <input> */
+  float: left;
+  height: 40px;
+  width: 50%;
+  text-align: center;
+}
+
+.submission-window__name:focus, .submission-window__phone-number:focus { /* <input> */
+  outline: none;
+}
+
+
+
+
+
+

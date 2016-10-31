@@ -20,6 +20,15 @@ module.exports = (db) => {
 
   });
 
+  router.post("/submit", (req, res) => {
+    const order = req.body;
+    
+    db.newOrder(order);
+
+    res.redirect("/");
+
+  });
+
   return router;
 
 }
