@@ -9,6 +9,7 @@ $(function() {
 
   $('.menu-item').on('click', function () {
     cart_module.toggleFromCart($(this).find('div'));
+    $(this).toggleClass('selected');
   });
 
   $('.cart__toggle-button').on('click', function () {

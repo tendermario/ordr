@@ -792,6 +792,9 @@ li {
   opacity: 1;
   cursor: pointer; }
 
+.selected {
+  border: 1px solid white; }
+
 .show--block {
   display: block !important; }
 
