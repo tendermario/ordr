@@ -13,29 +13,28 @@ const knex = require('knex')( {
 
 function getOrdersArray(orderResult) {
 let arrayOrders = [];
-  for (order of orderResult) {
-   let id = order.id;
+orderResult.forEach((order, index) => {
+  let id = order.id;
+  var promise = knex.select("dishes.name", "order_dishes.quantity")
+    .from("order_dishes")
+    .join("dishes", "dishes.id", "order_dishes.dish_id")
+    .where("order_dishes.order_id", order.id)
+    .then(function (dishes) {
 
-    var promise = knex.select("dishes.name", "order_dishes.quantity")
-      .from("order_dishes")
-      .join("dishes", "dishes.id", "order_dishes.dish_id")
-      .where("order_dishes.order_id", order.id)
-      .then(function (dishes) {
-
-        let {customer_name, order_date, completed,restaurant_id} = order;
-        let totalDishes = formatDishes(dishes);
-        let prettyData = {
-          id,
-          customer_name,
-          order_date,
-          dishes: totalDishes,
-          completed,
-          restaurant_id
-        };
-        return prettyData;
-      });
-    arrayOrders.push(promise);
-  }
+      let {customer_name, order_date, completed,restaurant_id} = order;
+      let totalDishes = formatDishes(dishes);
+      let prettyData = {
+        id,
+        customer_name,
+        order_date,
+        dishes: totalDishes,
+        completed,
+        restaurant_id
+      };
+      return prettyData;
+    });
+  arrayOrders.push(promise);
+  });
   return Promise.all(arrayOrders);
 }
 

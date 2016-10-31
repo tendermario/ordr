@@ -6,10 +6,8 @@ module.exports = (db) => {
     router.get("/", (req, res) => {
         // hard-coding restaurant as 1:
         let arrayOfOrders = db.getOrders(1).then((result) => {
-            // console.log(result);
-            res.render("../views/restaurants/index", {
-                result
-            });
+            console.log(result);
+            res.render("../views/restaurants/index", {result});
         });
     });
     router.post("/", function(req, res) {
