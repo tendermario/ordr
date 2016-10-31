@@ -22,7 +22,9 @@ module.exports = (db) => {
   });
 
   router.post("/submit", (req, res) => {
-    console.log(req.body);
+    db.newOrder(req.body).then(() => {
+      res.redirect('/');
+    });
   });
 
   return router;
