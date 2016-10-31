@@ -5,14 +5,14 @@
     bottom: 0px;
 
   width: 38%;
-
+  background-color: #282724;
   border-left: 1px solid black;
 }
 
 .sidebar__header { /* <header> */
   height: $sidebar__header__height;
   width: 100%;
-  background-color: lightgrey;
+  background-color: #1b1b1b;
   text-align: center;
   border-bottom: 1px solid black;
 }
@@ -20,6 +20,7 @@
 #restaurant__name { /* <h1> */
   margin: 0px auto;
   font-size: 1.2em;
+  color: white;
   line-height: $sidebar__header__height;
 }
 

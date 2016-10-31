@@ -8,7 +8,7 @@
 
   height: $navbar__height;
 
-  background-color: #191919;
+  background-color: #282724;
   border-bottom: 1px solid black;
 }
 
@@ -69,16 +69,15 @@
   position: relative;
 
   margin: 0px auto;
-  padding: 6px 0px;
+  padding: 15px 0px 0px;
 
   height: 100%;
-  width: $navbar__height;
+  max-width: 120px;
 
 }
 
 #logo { /* <img> */
-  max-height: 100%;
-  width: 90%;
+  height: 70%;
 }
 
 

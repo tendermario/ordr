@@ -14,12 +14,13 @@
     .cart__list--item { /* <li> */
       height: 50px;
       padding: 0px;
+      background-color: #ececec;
       border: 0px;
       border-bottom: 1px solid black;
     }
 
     .cart__list--item:hover {
-      background-color: #ececec;
+      background-color: #bfbfbf;
     }
 
     .cart__list--item--quantity { /* <input> */
@@ -78,12 +79,15 @@
       width: 100%;
       text-align: center;
       border: 0px;
+      background-color: #ececec;
+      color: black
     }
     .cart__submit-button { /* <button> */
       cursor: pointer;
       height: 50px;
       width: 100%;
-      background-color: none;
+      background-color: #1b1b1b;
+      color: white;
       border: 0px;
       border-top: 1px solid black;
     }

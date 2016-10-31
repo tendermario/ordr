@@ -419,6 +419,8 @@ textarea {
   height: 200px;
   width: 200px;
   margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
   display: inline-block;
   text-align: center;
   background-color: white;
@@ -456,7 +458,7 @@ textarea {
   right: 0px;
   left: 0px;
   height: 60px;
-  background-color: #191919;
+  background-color: #282724;
   border-bottom: 1px solid black; }
 
 .navlist {
@@ -516,14 +518,13 @@ textarea {
   z-index: 999;
   position: relative;
   margin: 0px auto;
-  padding: 6px 0px;
+  padding: 15px 0px 0px;
   height: 100%;
-  width: 60px; }
+  max-width: 120px; }
 
 #logo {
   /* <img> */
-  max-height: 100%;
-  width: 90%; }
+  height: 70%; }
 
 .customers__container {
   position: fixed;
@@ -625,13 +626,14 @@ textarea {
   right: 0px;
   bottom: 0px;
   width: 38%;
+  background-color: #282724;
   border-left: 1px solid black; }
 
 .sidebar__header {
   /* <header> */
   height: 50px;
   width: 100%;
-  background-color: lightgrey;
+  background-color: #1b1b1b;
   text-align: center;
   border-bottom: 1px solid black; }
 
@@ -639,6 +641,7 @@ textarea {
   /* <h1> */
   margin: 0px auto;
   font-size: 1.2em;
+  color: white;
   line-height: 50px; }
 
 .cart {
@@ -658,11 +661,12 @@ textarea {
   /* <li> */
   height: 50px;
   padding: 0px;
+  background-color: #ececec;
   border: 0px;
   border-bottom: 1px solid black; }
 
 .cart__list--item:hover {
-  background-color: #ececec; }
+  background-color: #bfbfbf; }
 
 .cart__list--item--quantity {
   /* <input> */
@@ -721,14 +725,17 @@ textarea {
   height: 40px;
   width: 100%;
   text-align: center;
-  border: 0px; }
+  border: 0px;
+  background-color: #ececec;
+  color: black; }
 
 .cart__submit-button {
   /* <button> */
   cursor: pointer;
   height: 50px;
   width: 100%;
-  background-color: none;
+  background-color: #1b1b1b;
+  color: white;
   border: 0px;
   border-top: 1px solid black; }
 
