@@ -40,7 +40,7 @@ $(function() {
     event.preventDefault(); 
     let order = {
       phone_number: $('.submission-window__phone-number').val(),
-      name: $('.submission-window__name').val(),
+      customer_name: $('.submission-window__name').val(),
       dishes: {}
     };
 
