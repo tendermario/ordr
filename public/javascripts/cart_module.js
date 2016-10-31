@@ -16,8 +16,8 @@ const _renderCartFactory = function () {
 
     $li.append($input);
     $li.append($label);
-    $li.append($dollarSign);
     $li.append($price);
+    $li.append($dollarSign);
     $li.append($basePrice);
 
     return $li;
@@ -64,7 +64,7 @@ cart_module.toggleFromCart = function ($obj) {
 cart_module.calculateTotalCost = function () {
   let totalCost = 0;
 
-  $('.cart__list li').each(function() {
+  $('.cart .cart__list li').each(function() {
     const $itemPrice = Number( $(this).find('.cart__list--item--price').text() );
     totalCost += Number($itemPrice);
   });

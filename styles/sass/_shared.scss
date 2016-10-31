@@ -21,6 +21,15 @@ li {
   font-family: helvetica;
 }
 
+.cart__list--item--quantity::-webkit-inner-spin-button, 
+.cart__list--item--quantity::-webkit-outer-spin-button {
+  position: absolute;
+    right: 0px;
+    top: 6px;
+  opacity: 1;
+  cursor: pointer;
+}
+
 .show--block {
   display: block !important;
 }
