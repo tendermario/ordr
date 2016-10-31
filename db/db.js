@@ -79,28 +79,35 @@ dbMethods = {
                d.getSeconds().padLeft()].join(':');
     // add a new customer
     newCustomer(order_info).returning('id')
-      .then((customer_id) => {
+    .then((customer_id) => {
     // add to order table
-        knex('orders').insert({
-          order_date: dformat,
-          completed: false,
-          customer_id: customer_id[0],
-          restaurant_id: 1
-        }).returning('id').then((order_id) => {
-          // add to order_dishes table
-          for (dish in order_info.dishes) {
-            knex('dishes').select('id').where('name', dish).returning('id')
-            .then((dish_id) => {
-              console.log(order_info.dishes[dish]);
-              knex('order_dishes').insert({
-                order_id: order_id[0],
-                dish_id: dish_id[0].id,
-                quantity: order_info.dishes[dish]
-              });
+      knex('orders').insert({
+        order_date: dformat,
+        completed: false,
+        customer_id: customer_id[0],
+        restaurant_id: 1
+      }).returning('id').then((order_id) => {
+        // make an array of each of the key value pairs
+        let keyArray = [];
+        let quantityArray = [];
+        for (dish in order_info.dishes) {
+          keyArray.push(dish);
+          quantityArray.push(order_info.dishes[dish]);
+        }
+        // add to order_dishes table
+        keyArray.forEach((dish, index) => {
+          knex('dishes').select().where('name', dish)
+          .returning()
+          .then((dish_id) => {
+            knex('order_dishes').insert({
+              order_id: order_id[0],
+              dish_id: dish_id[0].id,
+              quantity: quantityArray[index]
             });
-          }
+          });
         });
       });
+    });
   },
   // customer page pulls the orders for the restaurant
   getMenu: function(restaurant_id) {
@@ -116,13 +123,3 @@ module.exports =  {
     onConnect(dbMethods);
   }
 }
-
-// order_info = {
-//   customer: "Batman",
-//   phone_number: '16048456782',
-//   dishes: {
-//     duck:1,
-//     'a pig':4
-//   }
-// }
-
