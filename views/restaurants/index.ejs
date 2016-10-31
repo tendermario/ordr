@@ -7,18 +7,16 @@
                 Ordr
             </title>
             <link href="./stylesheets/restaurant.css" rel="stylesheet" type="text/css">
-                <!-- <script type="text/javascript" src=".../public/javascripts/restaurant.js"></script> -->
             </link>
         </meta>
-    </head>
+</head>
     <body>
      <nav class="fixed-nav-bar">
-  <img id="logo"src="../images/logo.png"  style="width:150px;height:40px;">
+  <img id="logo"src="../images/logo_light.png"  style="width:150px;height:40px;">
     </nav>
 
         <main class="container">
-
-            <div class="chit_container">
+      <div class="chit_container">
       <%let order_id;%>
       <%let customer_name;%>
       <%let dishes;%>
@@ -28,6 +26,7 @@
       <% for(var order of result) {%>
 
           <div class="order_chit"
+               class="draggable"
                data-order_id="<%=order.id%>"
                data-customer_name="<%=order.customer_name%>"
                data-dishes='<%-JSON.stringify(order.dishes)%>'
