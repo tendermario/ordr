@@ -12,18 +12,21 @@
         </meta>
     </head>
     <body>
+     <nav class="fixed-nav-bar">
+  <img id="logo"src="../images/logo.png"  style="width:150px;height:40px;">
+    </nav>
 
         <main class="container">
 
             <div class="chit_container">
-
       <%let order_id;%>
       <%let customer_name;%>
       <%let dishes;%>
       <%let order_date;%>
       <%let completed;%>
-      <%=JSON.stringify(result)%>
+
       <% for(var order of result) {%>
+
           <div class="order_chit"
                data-order_id="<%=order.id%>"
                data-customer_name="<%=order.customer_name%>"
@@ -33,14 +36,15 @@
           >
                     <header>
                        <!--  <button class="remove_chit" type="button">Queued: click to finish</button> -->
-                        <%=order.completed%>
+
                         <form id="remove_chit_2" method="post" action="/restaurants" >
                            <input type="hidden" name="order_id" value="<%=order.id%>">
-                           <input type="submit" value="Finish">
+                           <input type="submit" value="Finish Order">
                         </form>
 
+                        <h3 ><%=order.customer_name%></h3>
                         <h3 id="order_id" ><%=order.id%></h3>
-                        <h4 id="order_id" ><%=order.order_date%></h4>
+
                     </header>
 
                         <ul>
@@ -51,10 +55,10 @@
                             </li>
                             <%}%>
                         </ul>
+                         <h6 id="order_id" ><%=order.order_date%></h6>
 
           </div>
        <%}%>
-
             </div>
         </main>
         <footer>

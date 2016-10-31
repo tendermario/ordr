@@ -81,6 +81,10 @@ dbMethods = {
   completeOrder: function(order_id){
     console.log('inside completeOrder');
     return knex("orders").where("id",order_id).update("completed",true);
+  },
+  deleteOrder: function(order_id){
+    console.log("inside delete order");
+    return knex("orders").where("id",order_id).del();
   }
 
 
