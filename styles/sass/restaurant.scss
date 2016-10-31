@@ -1,8 +1,31 @@
 
+#logo{
+      margin-left: 15px;
+      margin-right: auto;
+      margin-top: 15px;
 
-.container{
+    }
+
+ .finished{
+      background-color: black !important;
+      color: white !important;
+    }
+
+
+  .fixed-nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 75px;
+  background-color: #00a087;
+}
+  .container{
     width: 100%;
-    background-color: white;
+    margin-top:75px;
+    display: flex;
+
 
    .deliver-food{
 
@@ -17,8 +40,6 @@
     text-align: center;
     vertical-align: middle;
     width:75%;
-
-
     }
 
 
@@ -27,34 +48,48 @@
 
     }
   .chit_container{
-    border-color: black;
-    border-style:solid;
-    background-color: #B2BFC7;
+
+
+    align-items: stretch;
+
+    border-radius: 40px;
+    background-image: url("../images/cork_paint.jpg");
+    background-repeat: repeat-y;
     margin: auto ;
-    height: 500px;
+    margin-top: 50px;
+    padding:15px 15px 15px 15px;
+    font-family: courier;
+
+
     width: 800px;
+    height:100%;
 
-  }
-  .order_chit{
 
-    header{
-      background-color: white;
-      width:100%;
-      position: relative;
-      left:0px;
-      top:0px;
 
-    }
+    .order_chit{
+      opacity:1;
+      padding: 10px 10px 10px 10px;
+      border-color: black;
+      border-style:solid;
+      float: left;
+      margin: 10px 10px 10px 10px;
+      background-image: url("../images/paper.gif");
+      header{
+
+        width:100%;
+        position: relative;
+        left:0px;
+        top:0px;
+
+      }
+      }
     .remove_chit{
       color: blue;
     }
+    .remove_chit_2{
+      color: blue;
+    }
 
-    padding: 10px 10px 10px 10px;
-    border-color: black;
-    border-style:solid;
-    float: left;
-    margin: 10px 10px 10px 10px;
-    background-color:#DADEE7;
     ul{
       padding:0;
       li{
@@ -62,8 +97,17 @@
       list-style-type: none;
     }
 
+
     }
 
   }
 
 }
+#page_header{
+  background-color: grey;
+  height:80px;
+  position: fixed;
+
+
+}
+
