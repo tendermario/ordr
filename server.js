@@ -30,6 +30,8 @@ app.get("/", (req, res) => {
   res.redirect("/customers");
 });
 
+
+
 //// Database passing its methods to the view
 
 db.connect((dbInstance) => {
