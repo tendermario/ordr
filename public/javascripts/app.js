@@ -18,7 +18,6 @@ $(function() {
 
   $('.menu-item').hover(function () {
     $(this).children('.menu-item__price--container').toggleClass('show--visability');
-    console.log($(this).children('.menu-item__price--container'));
   });
 
   $cartList.on('input', '.cart__list--item--quantity', function () {
@@ -61,9 +60,8 @@ $(function() {
       order.dishes[name] = quantity;
     });
 
-    console.log(order);
-
     cart_module.submitCart(order);
+
   });
 
 

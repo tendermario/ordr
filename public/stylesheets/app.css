@@ -762,6 +762,10 @@ textarea {
   border: 0px;
   border-top: 1px solid black; }
 
+.cart__submit-button:focus {
+  /* <button> */
+  outline: none; }
+
 .container {
   /* <main> */
   height: 100%;

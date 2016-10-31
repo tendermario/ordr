@@ -52,8 +52,6 @@ cart_module.toggleFromCart = function ($obj) {
 
   const itemInList = $cartList.find('.item-' + item.name_underscoredSpaces);
 
-  console.log(item.name_underscoredSpaces);
-
   if (itemInList.length) {
     _renderCart.removeFromCart(itemInList);
   } else {
@@ -73,11 +71,17 @@ cart_module.calculateTotalCost = function () {
 };
 
 // AJAX Methods
-cart_module.submitCart = (orderObj) => $.ajax({
-  method: 'post',
-  url: '/customers/submit',
-  data: orderObj
-});
+cart_module.submitCart = (orderObj) => {
+  return $.ajax({
+    method: 'post',
+    url: '/customers/submit',
+    data: orderObj
+  }).then(() => {
+    window.location.href = "/";
+  }).fail((error) => {
+    console.log('fail');
+  });
+};
 
 export default cart_module;
 
