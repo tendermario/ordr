@@ -18,7 +18,6 @@ li {
 
 * {
   box-sizing: border-box;
-  font-family: helvetica;
 }
 
 .cart__list--item--quantity::-webkit-inner-spin-button, 
@@ -33,6 +32,12 @@ li {
 .show--block {
   display: block !important;
 }
+.visability--hidden {
+  display: none;
+}
 .show--visability {
   visibility: visible !important;
+}
+.width--100 {
+  width: 100% !important;
 }

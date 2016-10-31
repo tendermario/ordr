@@ -80,5 +80,29 @@
   height: 70%;
 }
 
+.cart__toggle-button__container { /* <div> */
+  position: absolute;
+    top: 0px;
+    right: 0px;
+
+  cursor: pointer;
+
+  height: $navbar__height;
+  width: 60px;
+  padding: 18px;
+  border-left: 1px solid black;
+}
+
+.cart__toggle-button { /* <i> - Font-Awesome Icon */
+  height: 100%;
+  width: 100%;
+  font-size: 1.5em;
+  color: white;
+}
+
+
+
+
+
 
 

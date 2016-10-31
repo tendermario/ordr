@@ -11,6 +11,16 @@ $(function() {
     cart_module.toggleFromCart($(this).find('div'));
   });
 
+  $('.cart__toggle-button').on('click', function () {
+    $('.sidebar').toggleClass('visability--hidden');
+    $('.customers__container').toggleClass('width--100');
+  });
+
+  $('.menu-item').hover(function () {
+    $(this).children('.menu-item__price--container').toggleClass('show--visability');
+    console.log($(this).children('.menu-item__price--container'));
+  });
+
   $cartList.on('input', '.cart__list--item--quantity', function () {
     const $li = $(this).parents('li');
     const $price = $li.children('.cart__list--item--price');
@@ -63,14 +73,9 @@ $(function() {
 
     //-----------------------RESTAURANT------------------
 
-
      $(".remove_chit_2").on('click', function(event) {
         $(this).closest('.order_chit').addClass('finished');
     });
-
-
-
-
 
 
 });
