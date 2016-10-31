@@ -21,7 +21,7 @@ module.exports = (db) => {
   
   });
 
-  router.post("/submitCart", (req, res) => {
+  router.post("/submit", (req, res) => {
     console.log(req.body);
   });
 

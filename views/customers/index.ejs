@@ -12,7 +12,20 @@
       <% }); %>
     </ul>
   </main>
-  
+  <div id="submission-window--background"></div>
+  <div id="submission-window" class="submission-window">
+    <form id="cart__submission__form">
+      <section class="submission-window__cart">
+        <ul class="cart__list"></ul>
+      </section>
+      <footer class="submission-window__cart__footer">
+        <input class="cart__total-cost submission-window__total-cost" type="disabled" readonly="readonly" value="Total: $0"></input>
+        <input class="submission-window__name" placeholder="Enter your name:" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your name:'" required></input>
+        <input class="submission-window__phone-number" type="number" placeholder="Enter your phone number:" onfocus="this.placeholder=''" onblur="this.placeholder='Enter your phone number:'" required></input>
+        <button class="cart__submit-button" type="submit">Place Order</button>
+      </footer>
+    </form>
+  </div>
   <footer></footer>
 
   <script src="./javascripts/bundle.js"></script>

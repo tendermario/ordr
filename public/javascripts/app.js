@@ -13,22 +13,32 @@ $(function() {
   });
 
   $cartList.on('input', '.cart__list--item--quantity', function () {
-    const $price = $(this).siblings('.cart__list--item--price');
-    const basePrice = Number($(this).siblings('.cart__list--item--basePrice').text());
-    const totalPrice = basePrice * Number( $(this).val() );
-
-    console.log("==============");
-    console.log($price);
+    // const $price = $(this).siblings('.cart__list--item--price');
+    const idString = $(this).parent().attr('id');
+    const $liID = $('#' + idString);
+    const $price = $liID.children('.cart__list--item--price');
+    const basePrice = Number($liID.children('.cart__list--item--basePrice').text());
+    const totalPrice = basePrice * Number( $liID.children('.cart__list--item--quantity').val() );
+    
     $price.text(totalPrice);
 
     $('.cart__total-cost').val('Total: $' + cart_module.calculateTotalCost());
   });
 
-  $('.sidebar form').on('submit', function(event) { 
+  $('#sidebar__submit-button').on('click', function() {
+    $('#submission-window').addClass('show--visability');
+    $('#submission-window--background').addClass('show--block');
+  });
+  $('#submission-window--background').on('click', function() {
+    $('#submission-window').removeClass('show--visability');
+    $('#submission-window--background').removeClass('show--block');
+  });
+
+  $('#cart__submission__form').on('submit', function(event) { 
     event.preventDefault(); 
     let order = {
-      phone_number: "306-715-3342",
-      name: "joey",
+      phone_number: $('.submission-window__phone-number').val(),
+      name: $('.submission-window__name').val(),
       dishes: {}
     };
 
@@ -41,8 +51,10 @@ $(function() {
 
     console.log(order);
 
-    cart_module.submitCart()
+    cart_module.submitCart(order);
   });
+
+
 
 // Database pulling orders for customer page
   let restaurantsOrders = getOrders(7);

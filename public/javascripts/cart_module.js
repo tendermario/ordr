@@ -71,10 +71,10 @@ cart_module.calculateTotalCost = function () {
 };
 
 // AJAX Methods
-cart_module.submitCart = (cartItems) => $.ajax({
+cart_module.submitCart = (orderObj) => $.ajax({
   method: 'post',
-  url: '/customers/submitCart',
-  data: {cartItems}
+  url: '/customers/submit',
+  data: orderObj
 });
 
 export default cart_module;
