@@ -7,7 +7,7 @@ let $cartList = $('.cart__list');
 
 const _renderCartFactory = function () {
   const _buildCartItem = (obj) => {
-    const $li = $(`<li id="${obj.name_underscoredSpaces}">`).addClass('cart__list--item');
+    const $li = $(`<li>`).addClass(`item-${obj.name_underscoredSpaces} cart__list--item`);
     const $input = $('<input type="number" value="1" min="1">').addClass('cart__list--item--quantity');
     const $label = $('<label>').addClass('cart__list--item--name').text(obj.name);
     const $dollarSign = $('<span class="cart__list--item--dollarSign">').text('$');
@@ -50,7 +50,9 @@ cart_module.toggleFromCart = function ($obj) {
     price: $obj.find('.menu-item__price').text(),
   };
 
-  const itemInList = $cartList.find('#' + item.name_underscoredSpaces);
+  const itemInList = $cartList.find('.item-' + item.name_underscoredSpaces);
+
+  console.log(item.name_underscoredSpaces);
 
   if (itemInList.length) {
     _renderCart.removeFromCart(itemInList);

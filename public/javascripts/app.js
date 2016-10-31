@@ -13,13 +13,16 @@ $(function() {
   });
 
   $cartList.on('input', '.cart__list--item--quantity', function () {
-    // const $price = $(this).siblings('.cart__list--item--price');
-    const idString = $(this).parent().attr('id');
-    const $liID = $('#' + idString);
-    const $price = $liID.children('.cart__list--item--price');
-    const basePrice = Number($liID.children('.cart__list--item--basePrice').text());
-    const totalPrice = basePrice * Number( $liID.children('.cart__list--item--quantity').val() );
+    const $li = $(this).parents('li');
+    const $price = $li.children('.cart__list--item--price');
+    const basePrice = Number($li.children('.cart__list--item--basePrice').text());
+    const totalPrice = basePrice * Number( $li.children('.cart__list--item--quantity').val() );
     
+    const classList = $(this).parents('li').attr('class');
+    const foodItemClass = "." + classList.substring(0, classList.indexOf(' '));
+  
+    $(`${foodItemClass} .cart__list--item--quantity`).val($(this).val());
+    $(`${foodItemClass} .cart__list--item--price`).text(totalPrice);
     $price.text(totalPrice);
 
     $('.cart__total-cost').val('Total: $' + cart_module.calculateTotalCost());
