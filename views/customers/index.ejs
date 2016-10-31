@@ -6,11 +6,16 @@
 
   <%- include ../_partials/_sidebar.ejs %>
   <main class="customers__container">
-    <ul class="menu-list">
-      <% menuList.forEach((item) => { %>
-        <%- include ../_partials/_menu-item.ejs %>
-      <% }); %>
-    </ul>
+    <div class="customers__background-transparency">
+      <section class="menu-list__container">
+        <ul class="menu-list">
+          <% menuList.forEach((item) => { %>
+            <%- include ../_partials/_menu-item.ejs %>
+            <% console.log(item) %>
+          <% }); %>
+        </ul>
+      </section>
+    </div>
   </main>
   <div id="submission-window--background"></div>
   <div id="submission-window" class="submission-window">

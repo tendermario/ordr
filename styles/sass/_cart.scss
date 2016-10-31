@@ -19,7 +19,7 @@
     }
 
     .cart__list--item:hover {
-      background-color: red;
+      background-color: #ececec;
     }
 
     .cart__list--item--quantity { /* <input> */
@@ -43,16 +43,15 @@
     }
 
     .cart__list--item--dollarSign, .cart__list--item--price { /* <span> */
-      display: block;
       float: right;
-      font-size: 1.2em;
+
       margin: 17px 15px 15px 0px;
     }
         .cart__list--item--dollarSign:after { /* <span> */
-          clear: both;
+          clear: right;
         }
         .cart__list--item--price:after { /* <span> */
-          clear: both;
+          clear: right;
         }
         .cart__list--item--dollarSign { /* <span> */
           margin-right: 0px;

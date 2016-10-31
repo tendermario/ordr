@@ -1,14 +1,41 @@
 .menu-item { /* <li> */
+  overflow: hidden;
   cursor: pointer;
   position: relative;
   height: 200px;
   width: 200px;
-
-  float: left;
-
-  background-color: grey;
+  margin-bottom: 10px;
+  display: inline-block;
+  text-align: center;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 6px;
 }
 
-.menu-item:hover { /* <li> */
-  background-color: blue;
+.menu-item__image { /* <image> */
+  position: absolute;
+    right: 0px;
+  height: 100%;
+  
+}
+
+.menu-item__name--container, .menu-item__price--container {
+  position: absolute;
+  width: 100%;
+  height: $menu-item--header;
+
+   background:rgba(0,0,0,0.8);
+}
+
+.menu-item__name--container {
+  top: 0px;
+}
+
+.menu-item__price--container {
+  bottom: 0px;
+}
+
+.menu-item__name, .menu-item__price--container span { /* <h2> / <span> */
+  color: white;
+  line-height: $menu-item--header;
 }

@@ -2,9 +2,38 @@
   position: fixed;
     top: $navbar__height;
     left: 0px;
+    height: 100vh;
   width: 62%;
+  margin: 0px auto;
 }
 
-#lobster {
-  color: red;
+.customers__background-transparency { /* <div> */
+  height: 100vh;
+  width: 100%;
+  background:rgba(0,0,0,0.7);
+}
+
+.customers__container::after {
+  content: "";
+  background: url('../images/brickwall.jpg');
+  background-color: #2a2a2a;
+  opacity: 0.6;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  background-size: cover;
+    background-repeat: no-repeat;
+  z-index: -1;   
+}
+
+.menu-list__container {
+  z-index: 5;
+  overflow: hidden;
+  text-align: center;
+  margin: 0px auto;
+  padding-top: 20px;
+  width: 94%;
+  max-width: 1280px;
 }

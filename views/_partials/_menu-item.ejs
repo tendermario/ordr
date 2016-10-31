@@ -1,8 +1,12 @@
 <li class="menu-item">
-  <img src="#"></img>
-  <div>
+  <img class="menu-item__image" src="../images/<%= item.picture %>"></img>
+  
+  <div class="menu-item__name--container">
     <h2 class="menu-item__name" data-name="<%= item.name_underscored %>"><%= item.name %></h2>
+  </div>
+  <div class="menu-item__price--container">
     <span class="menu-item__dollarSign">$</span>
     <span class="menu-item__price"><%= item.price %></span>
   </div>
+
 </li>
