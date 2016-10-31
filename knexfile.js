@@ -1,5 +1,4 @@
 // Update with your config settings.
-const settings = require("./settings"); // settings.json
 require('dotenv').config();
 
 module.exports = {
