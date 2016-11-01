@@ -680,7 +680,7 @@ textarea {
   /* <li> */
   height: 50px;
   padding: 0px;
-  background-color: #ececec;
+  background-color: #3e2d24;
   border: 0px;
   border-bottom: 1px solid black; }
 
@@ -706,11 +706,13 @@ textarea {
   display: inline-block;
   margin: 0px auto;
   padding: 15px 0px;
-  font-size: 1.2em; }
+  font-size: 1.2em;
+  color: white; }
 
 .cart__list--item--dollarSign, .cart__list--item--price {
   /* <span> */
   float: right;
+  color: white;
   margin: 17px 15px 15px 0px; }
 
 .cart__list--item--dollarSign:after {
