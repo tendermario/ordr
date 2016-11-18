@@ -1,7 +1,7 @@
 "use strict";
 const express = require('express');
 const utilities_module = require('../utilities_module.js');
-var client = require('twilio')('ACc9db17ac92a9765e5bc23cb5d96d8931', '86ce6796f1daee631d27163b878b96bb');
+var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 const router  = express.Router();
 
 module.exports = (db) => {
