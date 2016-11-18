@@ -48,9 +48,9 @@ module.exports = (db) => {
 
     db.newOrder(order);
 
-    res.redirect("/");
-
+    res.redirect('/');
   });
+
   return router;
 
 }

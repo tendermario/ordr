@@ -14,7 +14,7 @@
     .cart__list--item { /* <li> */
       height: 50px;
       padding: 0px;
-      background-color: #ececec;
+      background-color: #3e2d24;
       border: 0px;
       border-bottom: 1px solid black;
     }
@@ -41,11 +41,12 @@
       margin: 0px auto;
       padding: 15px 0px;
       font-size: 1.2em;
+      color: white
     }
 
     .cart__list--item--dollarSign, .cart__list--item--price { /* <span> */
       float: right;
-
+      color: white;
       margin: 17px 15px 15px 0px;
     }
         .cart__list--item--dollarSign:after { /* <span> */
@@ -82,6 +83,10 @@
       background-color: #ececec;
       color: black
     }
+    #cart__total-cost {
+      background-color: #3e2d24;
+      color: white;
+    }
     .cart__submit-button { /* <button> */
       cursor: pointer;
       height: 50px;
@@ -90,4 +95,8 @@
       color: white;
       border: 0px;
       border-top: 1px solid black;
+    }
+
+    .cart__submit-button:focus { /* <button> */
+      outline: none;
     }
